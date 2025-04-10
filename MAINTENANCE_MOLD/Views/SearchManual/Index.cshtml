@@ -1,0 +1,221 @@
+﻿@model MAINTENANCE_MOLD.Models.Class;
+
+@using System.Security.Claims;
+@{
+    ViewData["Title"] = "Search Page";
+}
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="text-align:center">
+    <span style="font-size: xx-large; color:orange ;font-weight:600">PERIOD</span>
+    <span style="font-size: xx-large; color:#023047 ;font-weight:600">Mold Maintenance</span>
+    <span style="font-size: xx-large; color:blue ;font-weight:600">SEARCH</span>
+</div>
+<div class="row" style="margin-bottom:5px">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2" style="text-align:right">
+        @*<button onclick="capture()">แคปหน้า</button>*@
+
+        <button class="btn btn-success" type="submit" style="width:auto;text-align:left; " onclick="capture()">
+            <img src="~/images/capture.png" style="width:30px;height:25px;padding-right:0px;margin-right:2px" />
+            capture Page
+        </button>
+    </div>
+</div>
+@using (Html.BeginForm("SearchData", "SearchManual", FormMethod.Post, new { enctype = "multipart/form-data", id = "formData"  }))
+{
+<div class="row" style="background-color:floralwhite;padding:8px;border-radius:3px">
+    <div class="row" style="background-color:floralwhite;padding:10px">
+        <div class="col-md-2">
+            <div class="input-group " style="margin-top:0px">
+                <span class="input-group-text w-25">Plant</span>
+                @*<input type="text" class="form-control" id="txtFrom" style="height:100%" />*@
+                <select class="form-control" placeholder="Plant." asp-for="_SearchPage.s_plant" id="i_Plant" style="font-size:13px;margin-top:0px">
+                    @*<option value="">Selecte Date</option>*@
+                    <option value="">Select Plant</option>
+                    <option value="2001">2001</option>
+                    <option value="3001">3001</option>
+                    <option value="3002">3002</option>
+                    <option value="3005">3005</option>
+                    <option value="3007">3007</option>
+                    <option value="3008">3008</option>
+                </select>
+            </div>
+        </div>
+        @*<div class="col-md-2">
+            <div class="input-group ">
+                <span class="input-group-text w-30" style="margin-top:0px">Month From</span>
+                <input class=" form-control" id="i_moldNo" type="text" placeholder="Mold No" autocomplete="off" asp-for="_SearchPage.s_Moldno" style="margin-top:0px" />
+            </div>
+        </div>*@
+        <div class="col-md-2">
+            <div class="input-group ">
+                <span class="input-group-text w-30" style="margin-top:0px">Month From</span>
+                <input class="datepicker form-control" id="i_date" type="text" placeholder="Month" autocomplete="off" asp-for="_SearchPage.s_MonthFrom" style="margin-top:0px" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="input-group ">
+                <span class="input-group-text w-30" style="margin-top:0px">Month To</span>
+                <input class="datepicker form-control" id="i_date" type="text" placeholder="Month" autocomplete="off" asp-for="_SearchPage.s_MonthTo" style="margin-top:0px" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-text w-28" style="margin-top:0px">Doc No.</span>
+                @*@Html.DropDownListFor(model => model._SearchPage.s_Docno, (SelectList)ViewBag.s_docno, "--select document no--", new { @class = "form-control", @style = "font-size:12px" })*@
+                <input class="form-control" id="i_date" type="text" placeholder="Doc No." autocomplete="off" asp-for="_SearchPage.s_Docno" style="margin-top:0px" />
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group " style="margin-top:0px;">
+                <span class="input-group-text w-20" style="margin-top:0px;">Status</span>
+                @Html.DropDownListFor(model => model._SearchPage.s_Status, (SelectList)ViewBag.s_status, "--select status--", new { @class = "form-control", @style = "font-size:12px" })
+                @*<input class="form-control" type="text" asp-for="_SearchPage.V_Status" id="i_status" style="font-size:13px" />*@
+                @*<span style="color:red;font-size:10px">@Html.DisplayFor(model => model._ViewSearch.V_Status)</span>*@
+            </div>
+        </div>
+    </div>
+    <div class="row" style="background-color:floralwhite;padding:5px;margin: auto;
+  padding: 10px;">
+        <div class="col-md-12" style="text-align:center;margin-top:0px">
+            <button class="btn btn-success" type="submit" style="width:100px;text-align:left; border:1px solid" value="SEARCH" name="submitButton">
+                <img src="~/images/search.png" style="width:30px;height:25px;padding-right:0px;margin-right:2px" />
+                SEARCH
+            </button>
+
+        </div>
+    </div>
+    </div>
+    <br />
+    <div class="row" style="background-color:floralwhite;padding:8px;border-radius:3px">
+        <div class="col-md-12">
+            @*<span>Total</span>*@
+            @ViewBag.v_count
+            @*@if (@ViewBag.v_count != null)
+                {
+                    <span>0</span>
+                }
+                else
+                {
+                    @ViewBag.v_count
+                }*@
+            @*<span>Rows</span>*@
+        </div>
+
+    </div>
+    <div class="row" style="background-color:floralwhite;padding:8px;border-radius:3px">
+
+
+
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10" style=" overflow-y: auto;">
+
+            <table style="width:100%;font-size:10px" id="tbMold">
+                <tr>
+                    <th>No.</th>
+                    <th>Document No.</th>
+                    <th>MOLD No.</th>
+                    <th>Month</th>
+                    <th>Plant</th>
+                    <th>Status</th>
+                    <th>Date sent</th>
+                    @*<th>Empcode Issue</th>*@
+                    <th>Name Issue</th>
+                    @*<th>Empcode Approve</th>*@
+                    <th>Name Approve</th>
+                    <th style="width:80px">View</th>
+                    <th style="width:80px">Delete</th>
+                </tr>
+
+                @if (@ViewBag.SearchData != null)
+                {
+                    var row = 0;
+                    @foreach (var item in @ViewBag.SearchData)
+                    {
+                        <tr>
+                            <td>@(row += 1)</td>
+                            <td>@item.mpDocumentNo</td>
+                            <td>@item.mpMoldNo</td>
+                            <td>@item.mpMonth</td>
+                            <td>@item.mpPlant</td>
+                            <td>
+                                @if (@item.mpStep == 1)
+                                {
+                                    <img src="~/images/yellow.png" style="width:20px;height:20px;margin-right:3px" />
+                                }
+                                else if (@item.mpStep == 2)
+                                {
+                                    <img src="~/images/green.png" style="width:20px;height:20px;margin-right:3px" />
+                                }
+                                else
+                                {
+                                    <img src="~/images/sky.png" style="width:20px;height:20px;margin-right:3px" />
+                                }
+                                @item.mpStatus
+                            </td>
+                            <td>@item.mpdateSent</td>
+                            @*<td>@item.mpEmpcode_Issue</td>*@
+                            <td>@item.mpName_Issue</td>
+                            @*<td>@item.mpEmpcode_Approve</td>*@
+                            <td>@item.mpName_Approve</td>
+                            <td>
+                                <a class="pageList" id="@item.mpDocumentNo" href="@Url.Action("LoadData", "ManualRequestSheet", new { docno = @item.mpDocumentNo,vMoldActivity =@item.mpMoldNo,vMonth=@item.mpMonth})" style="font-size:12px;text-decoration:auto"> <img src="~/images/more.png" style="width:30px;height:30px;margin-right:3px" />More</a>
+                            </td>
+                            <td>
+                                <a style="width:100%;cursor: not-allowed !important ;font-size:12px;text-decoration:auto;" disabled="disabled">
+                                    <img src="~/images/x-button.png" style="width:20px;height:20px;margin-right:3px" /> Delete
+                                </a>
+
+
+
+                            </td>
+                            @*@if (@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.System)?.Value == "admin" && @item.mpStep == 0)
+                                {
+                                    <td>
+
+
+                                        <a style="width:100%;cursor: pointer;font-size:12px;text-decoration:auto;" onclick="warning('@item.mpDocumentNo','','','','@Url.Action("Delete","Search")','You want to delete this data ?')">
+                                            <img src="~/images/x-button.png" style="width:20px;height:20px;margin-right:3px" /> Delete
+                                        </a>
+
+                                    </td>
+                                }
+                                else
+                                {
+
+                                }*@
+
+
+                        </tr>
+
+                    }
+                }
+
+
+            </table>
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+    }
+
+    <script>
+        $('.datepicker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: 'yyyy/mm'
+
+        });
+
+        function fun_moreData(v_docno) {
+            console.log("funmoreData" + v_docno);
+            $.post("/Search/MoreData", { docno: v_docno });
+        };
+
+    </script>

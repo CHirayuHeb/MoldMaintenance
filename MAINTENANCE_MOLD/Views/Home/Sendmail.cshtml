@@ -1,0 +1,377 @@
+﻿@using System.Security.Claims;
+@*@model QA_APPROVAL_REQUEST.Models.DBconn.qaHistoryApproved*@
+@*@model MAINTENANCE_MOLD.Models.Table.Tb_Mold.mmHistoryApproved;*@
+@*@model MAINTENANCE_MOLD.Models.Class;*@
+@model MAINTENANCE_MOLD.Models.Table.Tb_Mold.mmHistoryApproved;
+@{
+    Layout = null;
+}
+
+@*New Request*@
+<div>
+
+    @Html.HiddenFor(m => m.htDocumentNo, new { id = "docno" })
+    @Html.HiddenFor(m => m.htStep, new { id = "step" })
+    @Html.HiddenFor(m => m.htTo, new { id = "EmailTo" })
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+            <span style="font-weight: bold; font-size: 16px;">Mold Maintenance ==></span>
+            @if (@ViewBag.status == "Finished")
+            {
+                <span style="font-weight: bold; font-size: 16px; color:green">@ViewBag.status</span>
+            }
+            else
+            {
+                <span style="font-weight: bold; font-size: 16px;">@ViewBag.status</span>
+            }
+
+            @*<span>@ViewBag.ViewTest</span>*@
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="p-2-modify" style="width: 100%; border: 1px grey; padding-top: 10px;">
+        <div class="input-group ig-property">
+            <span class="input-group-text w-25">From</span>
+            <input type="text" style=" margin-top: auto" class="form-control" id="txtFrom" autocomplete="off" asp-for="htFrom" readonly /> @*asp-for="htFrom"/>*@
+        </div>
+        <div class="input-group ig-property">
+            <span class="input-group-text w-25">To.</span>
+
+
+
+            @if (@ViewBag.status == "Finished")
+            {
+                <input type="text" style=" margin-top: auto" class="form-control" id="searchInputTO" autocomplete="off" asp-for="htTo" disabled /> @*asp-for="htTo"/>*@
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.htTo, (SelectList)ViewBag.UserApprove, "--select email--", new { @class = "form-control", @style = "font-size:12px", id = "searchInputTO" })
+                @*<input type="text" style=" margin-top: auto" class="form-control" id="searchInputTO" autocomplete="off" asp-for="htTo" />*@
+            }
+        </div>
+        <div class="input-group ig-property">
+            <span class="input-group-text w-25">CC.</span>
+            @*<input asp-for="htCC" class="form-control" id="searchInputCC" />*@
+            @if (@ViewBag.status == "Finished")
+            {
+                <textarea class="form-control" id="searchInputCC" rows="5" cols="50" autocomplete="off" asp-for="htCC" disabled></textarea>
+            }
+            else
+            {
+                <textarea class="form-control" id="searchInputCC" rows="5" cols="50" autocomplete="off" asp-for="htCC"></textarea>
+            }
+
+        </div>
+        <div class="d-flex justify-content-center" style="width: 100%; text-align: center; padding-top: 5px; padding-bottom: 5px;">
+            <div class="p-1-modify" style="width: 100%; border: 1px grey;">
+                @if (@ViewBag.status == "Finished")
+                {
+                    <div class="form-check form-check-inline">
+
+                        @Html.TextBoxFor(m => m.htStatus, new { @type = "radio", @checked = "checked", id = "StatusApp" })
+                        @*@Html.RadioButtonFor(m => Model.htStatus, "Approve", new { @class = "form-check-input", id = "StatusApp", disabled = "disabled", onclick = "CheckDis('Approve')" })*@
+                        <label class="form-check-label" for="StatusApp">Approve</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="display:none">
+
+                        @Html.RadioButtonFor(m => Model.htStatus, "Disapprove", new { @class = "form-check-input", id = "StatusDis", disabled = "disabled", onclick = "CheckDis('Disapprove')" })
+                        <label class="form-check-label" for="StatusDis">Disapprove</label>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="form-check form-check-inline">
+                        <div class="row">
+                            <div class="col-md-6" style="text-align:right">
+                                @Html.RadioButtonFor(m => Model.htStatus, "Approve", new { @class = "radioCheck", id = "StatusApp", onclick = "CheckDis('Approve')", @style = "border:1px solid black;height:24px;width:20px;margin-top:auto" })
+                            </div>
+                            <div class="col-md-6"><label class="form-check-label" for="StatusApp">  Approve</label></div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-check form-check-inline" style="display:none">
+
+                        @Html.RadioButtonFor(m => Model.htStatus, "Disapprove", new { @class = "form-check-input", id = "StatusDis", onclick = "CheckDis('Disapprove')" })
+                        <label class="form-check-label" for="StatusDis">Disapprove</label>
+
+                    </div>
+                }
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class=" panel-group ir fadeInUp animated wowload animated" style="visibility: visible;
+                                            animation-name: fadeInUp; margin-bottom: 5px;">
+        <div class="panel panel-default property">
+            <div class=" panel-heading panel-heading-custom property" tabindex="0">
+                <h4 class="panel-title faq-title-range collapsed" data-bs-toggle="collapse" data-bs-target="#History"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    <label>
+                        History
+                    </label>
+                    <label class="lbV">
+                    </label>
+                </h4>
+            </div>
+            <div class="panel-collapse collapse" id="History" style="overflow-y: scroll; max-height: 200px; ">
+                <div id="divHistory" class="panel-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-footer" style="width: 100%;">
+        @*if (ViewBag.empApproveBy == 0 || ViewBag.empApproveBy == null)
+            {*@
+        @if (@ViewBag.status == "Finished")
+        {
+            <button href="#" id="btnSubmit" style="width: 10%;" class="btn btn-success btn-block" disabled>
+                <span>Send</span>
+            </button>
+        }
+        else
+        {
+            <a href="#" id="btnSubmit" style="width: 10%;" class="btn btn-success btn-block">
+                <span>Send</span>
+            </a>
+        }
+        @*<a href="#" id="btnSubmit" style="width: 10%;" class="btn btn-success btn-block">
+                <span>Send</span>
+            </a>*@
+        @*}*@
+        <button type="button" id="btnclose" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 10%;">Close</button>
+
+    </div>
+
+    <div>
+        <div class="lds-ring" style="text-align: center; margin: auto; display: block;">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+
+
+    @*<div id="container">
+
+            @Html.Partial("Msg");
+        </div>*@
+
+
+
+</div>
+<script>
+    $("#btnSubmit").click(function () {
+        document.getElementById('i_Docno').removeAttribute("disabled");
+        //document.getElementById('i_Plant').removeAttribute("disabled");
+
+        $('#searchInputTO').removeAttr('disabled', 'disabled');
+        $('#EmailTo').removeAttr("name");
+        var id = $("#i_Docno").val();
+        var i_Plant = $("#i_Plant").val();
+        var i_date = $("#i_date").val();
+
+
+        console.log("send mail ==> i_Plant  " +   @ViewBag.vplant );
+        var myformdata = $("#myForm").serialize() + '&' + $("#formData").serialize() ;
+        console.log("myformdata ==> " + myformdata);
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SendMail_post", "Home", new { vplant = @ViewBag.vplant})',
+            data: myformdata,// { vdocno: id, vplant: i_Plant, vdate: i_date },
+            beforeSend: function () {
+                swal.fire({
+                    html: '<h5>Loading...</h5>',
+                    showConfirmButton: false,
+                    onRender: function () {
+                        // there will only ever be one sweet alert open.
+                        //$('.swal2-content').prepend(sweet_loader);
+                    }
+                });
+            },
+                success:  function (config) {
+                    // alert(config.c1);
+                    if (config.c1 == "S") {
+                        $("#loaderDiv").hide();
+                        $("#myModal1").modal("hide");
+                        swal.fire({
+                            title: 'SUCCESS',
+                            icon: 'success',
+                            text: "Send Mail Aleady",
+
+                        })
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    // $.get('https://api.ipify.org?format=json')
+                                       @*$.ajax({
+                                             type: "POST",
+                                             url: '@Url.Action("Index")',
+                                           data: myformdata,
+                                    });*@
+
+                                    window.location.href = '@Url.Action("Index", "Home")';
+                                }
+
+                            })
+                    }
+                    else if (config.c1 == "P") {
+                        document.getElementById('i_status').disabled = true;
+                        document.getElementById('i_Docno').disabled = true;
+                        console.log("P");
+                        $("#loaderDiv").hide();
+                        $("#myModal1").modal("hide");
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'warning',
+                            text: config.c2,
+                        }) .then((result) => {
+                            if (result.isConfirmed) {
+                                console.log("P confrim");
+                                    //document.getElementById('i_status').value = config.c5;
+                                    //document.getElementById('i_Docno').value = config.c4;
+                                       $.ajax({
+                                             type: "POST",
+                                             url: '@Url.Action("Index")',
+                                           data: myformdata,
+                                    });
+
+                                }
+
+                            })
+                    }
+                    else {
+                       // $("#loaderDiv").hide();
+                       // $("#myModal1").modal("hide");
+                          swal.fire({
+                              title: 'warning',
+                              icon: 'warning',
+                              text: config.c2,
+                        })
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    // $.get('https://api.ipify.org?format=json')
+                                   // window.location.href = '@Url.Action("Index", "Home")';
+                                }
+
+                            })
+                    }
+
+
+                }
+            });
+
+    });
+
+
+    $("#btnclose").click(function () {
+        document.getElementById('i_Docno').disabled = true;
+        document.getElementById('i_status').disabled = true;
+        //document.getElementById('i_Plant').removeAttribute("disabled");
+        console.log("btnclose" );
+    });
+</script>
+<script type="text/javascript">
+
+        $(function () {
+            function split(val) {
+                return val.split(/,\s*/);
+            }
+            function extractLast(term) {
+                return split(term).pop();
+            }
+
+            $("#searchInputCC")
+          // don't navigate away from the field on tab when selecting an item
+          .on("keydown", function (event) {
+              if (event.keyCode === $.ui.keyCode.TAB &&
+                  $(this).autocomplete("instance").menu.active) {
+                  event.preventDefault();
+              }
+          })
+            .autocomplete({
+                minLength: 0,
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("Search","Home")', {
+                        term: extractLast(request.term)
+                    }, response);
+                },
+                focus: function () {
+                    // prevent value inserted on focus
+                    return false;
+                },
+                select: function (event, ui) {
+                    const email365 = ui.item.value.split(" ")[0];
+                    //let email365 = myArray[0];
+                    console.log("test" + email365);
+
+                    var terms = split(this.value);
+                    // remove the current input
+                    terms.pop();
+                    // add the selected item
+
+                    //terms.push(ui.item.value);
+                    terms.push(email365);
+                    // add placeholder to get the comma-and-space at the end
+                    terms.push("");
+                    this.value = terms.join(", ");
+                    return false;
+                }
+                });
+
+
+            //document.getElementById('searchInputTO').addEventListener('change', function () {
+            //    const myArray = this.value.split(" ");
+            //    let email365 = myArray[0];
+
+            //    document.getElementById("searchInputTO").value = email365;
+            //    console.log("test" + email365);
+            //    //console.log('You selected: ', this.value);
+            //});
+
+
+             $("#searchInputTO2")
+          // don't navigate away from the field on tab when selecting an item
+          .on("keydown", function (event) {
+              if (event.keyCode === $.ui.keyCode.TAB &&
+                  $(this).autocomplete("instance").menu.active) {
+                  event.preventDefault();
+              }
+          })
+            .autocomplete({
+                minLength: 1,
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("Search","Home")', {
+                        term: extractLast(request.term)
+                    }, response);
+                },
+                focus: function () {
+                    // prevent value inserted on focus
+                    return false;
+                },
+                select: function (event, ui) {
+
+                    var terms = split(this.value);
+                    // remove the current input
+                    terms.pop();
+                    // add the selected item
+                    terms.push(ui.item.value);
+                    // add placeholder to get the comma-and-space at the end
+                  //  terms.push("");
+                    this.value = terms;
+                    this.value = terms.join(", ");
+                    return false;
+                }
+            });
+        })
+
+</script>

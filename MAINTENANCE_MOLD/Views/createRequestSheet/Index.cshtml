@@ -1,0 +1,303 @@
+﻿@model MAINTENANCE_MOLD.Models.Class;
+@*@model MAINTENANCE_MOLD.Models.Class;*@
+@using System.Security.Claims;
+@{
+
+    ViewData["Title"] = "Create Request sheet";
+}
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="text-align:center">
+    <span style="font-size: xx-large; color:orange ;font-weight:600">PERIOD </span>
+    <span style="font-size: xx-large; color:#023047 ;font-weight:600">Mold Maintenance</span>
+    <span style="font-size: xx-large; color:darkorange ;font-weight:600">REQUEST SHEET</span>
+</div>
+@using (Html.BeginForm("LoadData", "ManualRequestSheet", FormMethod.Post, new { enctype = "multipart/form-data", id = "formRequest" }))
+{
+    <div style="padding:8px;border-radius:3px">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8" style="background-color:white;padding:8px">
+                @*<div class="row">
+                    <div class="col-md-12" style="text-align:center">
+                        ร้องขอ Mold
+                    </div>
+                </div>*@
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group ">
+                            <span class="input-group-text w-30" style="margin-top:3px">
+                                Mold Activity
+                            </span>
+                            <input class=" form-control" id="c_moldAc" type="text" autocomplete="off" asp-for="_ViewCreateMold.v_activity" required />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group ">
+                            <span class="input-group-text w-30" style="margin-top:3px">
+                                Date
+                            </span>
+                            <input class="Mdatepicker form-control" id="c_date" type="text" autocomplete="off" asp-for="_ViewCreateMold.v_Month" required />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+                @*<div class="row">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group ">
+                                <span class="input-group-text w-30" style="margin-top:3px">
+                                    Dep
+                                </span>
+                                <input class=" form-control" id="c_dept" type="text" autocomplete="off" asp-for="_ViewCreateMold.V_Dept"   />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>*@
+                <div class="row" style="padding:8px;">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6" style="text-align: center;">
+                        <button class="btn btn-success" type="submit" style="width:100px;text-align:left; border:1px solid">
+                            <img src="~/images/search.png" style="width:30px;height:25px;padding-right:0px;margin-right:2px" />
+                            CREATE
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+
+
+    </div>
+}
+
+
+<script>
+    $('#txtR_ActualStartDate').change(function () {
+        let tPlanST = document.getElementById("txtR_ActualStartDate").value;
+        let tReplan = document.getElementById("txtRplanLeStartDate").value;
+        let StPlanST = tPlanST.substring(0, 7);
+        let StReplan = tReplan.substring(0, 7);
+        console.log("StPlanST===>" + StPlanST);
+        console.log("StReplan===>" + StReplan);
+        if (StPlanST != StReplan) {
+            swal.fire({
+                title: 'แจ้งเตือน',
+                icon: 'warning',
+                text: "กรุณาเลือกวันที่เลือกภายในเดือน",
+
+            })
+                .then((result) => {
+                    document.getElementById('txtR_ActualEndDate').value = "";
+                    document.getElementById('txtR_ActualStartDate').value = "";
+                });
+        }
+
+
+
+    });
+    $('#txtR_ActualEndDate').change(function () {
+        let tPlanST = document.getElementById("txtR_ActualEndDate").value;
+        let tReplan = document.getElementById("txtRplanLeStartDate").value;
+        let StPlanST = tPlanST.substring(0, 7);
+        let StReplan = tReplan.substring(0, 7);
+        if (StPlanST != StReplan) {
+
+            swal.fire({
+                title: 'แจ้งเตือน',
+                icon: 'warning',
+                text: "กรุณาเลือกวันที่เลือกภายในเดือน",
+
+            })
+                .then((result) => {
+                    document.getElementById('txtR_ActualEndDate').value = "";
+                    document.getElementById('txtR_ActualStartDate').value = "";
+                });
+
+
+
+        }
+
+    });
+
+
+
+
+    $('#i_chagestart').change(function () {
+
+        let tPlanST = document.getElementById("txtRplanLeStartDate").value;
+        let tReplan = document.getElementById("i_chagestart").value;
+        let StPlanST = tPlanST.substring(0, 7);
+        let StReplan = tReplan.substring(0, 7);
+        console.log("StPlanST" + StPlanST);
+        console.log("StReplan" + StReplan);
+        if (StPlanST != StReplan) {
+
+            swal.fire({
+                title: 'แจ้งเตือน',
+                icon: 'warning',
+                text: "กรุณาเลือกวันที่เลือกภายในเดือน",
+
+            })
+                .then((result) => {
+                    document.getElementById('i_chagestart').value = "";
+                    document.getElementById('i_chageend').value = "";
+                });
+
+
+
+        } else {
+            const i_Day_Cleaning = document.getElementById("i_moldday").value
+            const i_chagestart = document.getElementById("i_chagestart").value
+            document.getElementById("i_chageend").value = "11";
+            // alert('i_chagestart!' + i_chagestart)
+            console.log("tomorrow2" + addDays(i_chagestart, i_Day_Cleaning));
+            document.getElementById("i_chageend").value = addDays(i_chagestart, i_Day_Cleaning);
+        }
+
+
+
+
+
+
+    });
+
+    function addDays(date, days) {
+
+        var tomorrow2 = new Date(date);
+        tomorrow2.setUTCDate(tomorrow2.getUTCDate() + (days-1));
+        console.log("tomorrow2" + tomorrow2.toUTCString("yyyy/MM/dd"));
+
+        var d = new Date(tomorrow2),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('/');
+        //return tomorrow2;
+    }
+
+    $('.Mdatepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: 'yyyy/mm'
+
+    });
+    $(function () {
+        $("#user_profile_form").submit(function (event) {
+            event.preventDefault();
+            console.log("Save_data---------");
+        });
+    });
+
+
+
+    $("#btnSave").click(function () {
+        //var filename = $("#fPathFile").serialize();
+        //console.log("Save_data" + filename);
+
+        const formdata = new FormData(document.getElementById("formRequest"));
+        let ddFileName = $('#ddFileName1').prop("files")[0];
+        formdata.append('aiFileName1', ddFileName);
+        //var mydata2 = formdata.serialize();
+        console.log(document.forms.item(0));
+       // console.log("mydata2 + " + mydata2);
+        var nameValue2 = document.getElementById("ddFileName1").value;
+        var i_path = $("#ddFileName1").val();
+        var url2 = '@Url.Action("SaveData", "RequestSheet")?pathfile=' + i_path;
+       //
+        var mydata = $("#formRequest").serialize();
+        console.log("nameValu2e" + nameValue2);
+        console.log("i_path" + i_path);
+             $.ajax({
+             type: "POST",
+             url: url2,//'@Url.Action("SaveData", "RequestSheet", new { pathfile = "i_path" })',
+             // url: '@Url.Action("SaveData", "RequestSheet")',
+             //data: { classs: mydata, pathfile: nameValue2 } ,
+             data: mydata,//formdata,//  // mydata, // mydata,//viewModel,//
+             beforeSend: function () {
+                 swal.fire({
+                     html: '<h5>Loading...</h5>',
+                     showConfirmButton: false,
+                     onRender: function () {
+                         // there will only ever be one sweet alert open.
+                         //$('.swal2-content').prepend(sweet_loader);
+                     }
+                 });
+             },
+                success: async function (config) {
+
+                    if (config.c1 == "S") {
+                        $("#loaderDiv").hide();
+                        //await $("#myModal1").modal("hide");
+                        swal.fire({
+                            title: 'SUCCESS',
+                            icon: 'success',
+                            html: "Save data success  <br> Request no: " + config.c4,
+
+                        })
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById('i_reqNo').value = config.c4;
+                                    document.getElementById('i_status').value = config.c5;
+                                    if (config.c6 !="") {
+                                        document.getElementById('id_file').value = config.c6;
+                                    }
+                                    document.getElementById('i_responby').value = config.c7;
+                                    document.getElementById('i_section').value = config.c8;
+
+
+                                    document.getElementById("btnsavefile").click();
+
+
+                                    @*$.ajax({
+                                        type: "POST",
+                                        url: '@Url.Action("RequestPage", "RequestSheet")',
+                                        data: config.c3, // mydata,
+                                    });*@
+
+                                }
+
+
+                            })
+                    }
+                    else if (config.c1 == "P") {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'warning',
+                            text: config.c2,
+                        })
+                    }
+                    else if (config.c1 == "E") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ERROR',
+                            text: config.c2,
+                        })
+                    }
+                }
+             });
+
+
+   });
+
+</script>

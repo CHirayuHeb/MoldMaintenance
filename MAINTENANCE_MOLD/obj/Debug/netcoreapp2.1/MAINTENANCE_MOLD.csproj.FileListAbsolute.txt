@@ -1,0 +1,118 @@
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.deps.json
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.runtimeconfig.json
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.runtimeconfig.dev.json
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.dll
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.csprojAssemblyReference.cache
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.csproj.CoreCompileInputs.cache
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorAssemblyInfo.cache
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorAssemblyInfo.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.AssemblyInfoInputs.cache
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.AssemblyInfo.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.TagHelpers.input.cache
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.TagHelpers.output.cache
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorCoreGenerate.cache
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorTargetAssemblyInfo.cache
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorTargetAssemblyInfo.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.pdb
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.Views.dll
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.Views.pdb
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.Views.pdb
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.dll
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.pdb
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.csproj.CopyComplete
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Login.g.cshtml.cs
+C:\Users\t0015142\source\repos\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Default.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.deps.json
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.runtimeconfig.json
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.runtimeconfig.dev.json
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.dll
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.pdb
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.Views.dll
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.Views.pdb
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.csproj.CoreCompileInputs.cache
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorAssemblyInfo.cache
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorAssemblyInfo.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.AssemblyInfoInputs.cache
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.AssemblyInfo.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.TagHelpers.input.cache
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.TagHelpers.output.cache
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorCoreGenerate.cache
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Login.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Sendmail.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Tableview.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\RequestSheet\RequestPage.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\RequestSheet\SendmailR.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Search\SearchPage.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Default.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorTargetAssemblyInfo.cache
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorTargetAssemblyInfo.cs
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.Views.pdb
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.dll
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.pdb
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.csproj.CopyComplete
+C:\Users\t0015142\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.csprojAssemblyReference.cache
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.deps.json
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.runtimeconfig.json
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.runtimeconfig.dev.json
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.dll
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.pdb
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.Views.dll
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\bin\Debug\netcoreapp2.1\MAINTENANCE_MOLD.Views.pdb
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.csproj.CoreCompileInputs.cache
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorAssemblyInfo.cache
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorAssemblyInfo.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.AssemblyInfoInputs.cache
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.AssemblyInfo.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.TagHelpers.input.cache
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.TagHelpers.output.cache
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorCoreGenerate.cache
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\createRequestSheet\Index.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Login.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Sendmail.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Home\Tableview.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\ManualRequestSheet\Index.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\ManualRequestSheet\NoData.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\ManualRequestSheet\SendmailM.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\RequestSheet\RequestPage.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\RequestSheet\SendmailR.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\SearchManual\Index.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\SearchManual\SearchManual.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Search\SearchPage.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Default.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorTargetAssemblyInfo.cache
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.RazorTargetAssemblyInfo.cs
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.Views.pdb
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.dll
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.pdb
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.csproj.CopyComplete
+C:\Users\t0015142\OneDrive - STANLEY ELECTRIC CO., LTD\Desktop\Work\MVC Project\MAINTENANCE_MOLD\MAINTENANCE_MOLD\obj\Debug\netcoreapp2.1\MAINTENANCE_MOLD.csprojAssemblyReference.cache

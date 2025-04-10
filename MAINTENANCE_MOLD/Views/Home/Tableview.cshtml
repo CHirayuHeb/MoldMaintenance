@@ -1,0 +1,130 @@
+﻿@using System.Security.Claims;
+@model MAINTENANCE_MOLD.Models.Class;
+
+<div>
+
+    <table id="tbMold">
+        <tr>
+            <th colspan="9">
+                DIE & MOLD MAINTENANCE DEPARTMENT / LAMP DIVISION
+            </th>
+            <th colspan="9">INJECTION Location:</th>
+            <th colspan="10">IN-HOUS</th>
+            <th colspan="10">SUPPLIER</th>
+            <th colspan="10">OTHERS:</th>
+        </tr>
+        <tr>
+            <th rowspan="3">No</th>
+            <th rowspan="3" style="width:100px">Model</th>
+            <th rowspan="3" style="width:100px">Mold Name</th>
+            <th rowspan="3">Mold Control No.</th>
+            <th rowspan="3">Mold size(S, M, L, LL)</th>
+            <th rowspan="3">Rank</th>
+            <th rowspan="3" style="width:30px">Injection (Line No.)</th>
+            <th rowspan="3" style="width:30px">
+                Shot Maintenance
+            </th>
+            <th rowspan="3">
+                Last Shot
+            </th>
+            <th>Year</th>
+            @if (@ViewBag.sdays != null)
+            {
+                <th colspan=@ViewBag.sdays>@ViewBag.sYear</th>
+            }
+            else
+            {
+                <th colspan=31>@ViewBag.sYear</th>
+            }
+
+            <th rowspan="3">
+                Request Sheet No.
+            </th>
+            <th rowspan="3">Remark.</th>
+        </tr>
+        <tr>
+            <th>Month</th>
+            @*<th colspan=@ViewBag.sdays>@ViewBag.sMonth</th>*@
+            @if (@ViewBag.sdays != null)
+            {
+                <th colspan=@ViewBag.sdays>@ViewBag.sMonth</th>
+            }
+            else
+            {
+                <th colspan=31>@ViewBag.sMonth</th>
+            }
+        </tr>
+        <tr>
+            <th>Day</th>
+            @if (@ViewBag.sdays != null)
+            {
+                @for (int i = 1; @i <= @ViewBag.sdays; i++)
+                {
+                    <th style="width:15px">@i</th>
+                }
+            }
+            else
+            {
+                @for (int i = 1; @i <= 30; i++)
+                {
+                    <th>@i</th>
+                }
+              
+            }
+
+        </tr>
+        @if (@ViewBag.ViewMoldData != null)
+        {
+            @foreach (var item in @ViewBag.ViewMoldData)
+            {
+                <tr>
+                    <td style="text-align:left" rowspan="2">@item.v_no</td>
+                    <td style="text-align:left" rowspan="2">@item.v_arModel</td>
+                    <td style="text-align:left" rowspan="2">@item.v_arMoldName</td>
+                    <td style="text-align:left" rowspan="2">@item.v_arMold_Control</td>
+                    <td style="text-align:center" rowspan="2">
+                        @item.v_mc_sizeMold
+                    </td>
+                    <td style="text-align:center" rowspan="2">@item.v_mcRange</td>
+                    <td style="text-align:left" rowspan="2">@item.v_mcProdLine</td>
+                    <td style="text-align:right" rowspan="2">@item.v_mcShortMa</td>
+                    <td style="text-align:right" rowspan="2">@item.v_arLastShotQty</td>
+                    <td style="font-size:8px">
+                        PLAN
+                    </td>
+                    @for (int i = 1; @i <= @ViewBag.sdays; i++)
+                    {
+                        @if (@item.v_date == @i)
+                        {
+                            <td style="background-color:yellow;"></td>
+                        }
+                        else if (@item.v_date < @i && i < @item.v_datePlus)
+                        {
+                            <td style="background-color:yellow;"></td>
+                        }
+
+                        else
+                        {
+                            <td></td>
+                        }
+
+                    }
+                 
+                    <td style="text-align:left" rowspan="2"></td>
+                    <td style="text-align:left" rowspan="2"></td>
+                </tr>
+                <tr>
+                    <td style="font-size:8px">ACTUAL</td>
+                    @for (int i = 1; @i <= @ViewBag.sdays; i++)
+                    {
+                        <td></td>
+                    }
+                  
+
+                </tr>
+            }
+        }
+
+
+    </table>
+</div>

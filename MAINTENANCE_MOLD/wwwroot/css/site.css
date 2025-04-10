@@ -1,0 +1,345 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background: #a2d2e8;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+.wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    height: 310px;
+    min-height: 350px;
+    min-width: 700px;
+    padding: 10px;
+    transform: translate(-50%, -50%);
+    background: #fafafa;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 5px;
+    background-color: Window;
+    /*cadetblue*/
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    color: black;
+    text-align: left;
+    width: 96%;
+}
+
+    footer p {
+        padding-left: 0%;
+        font-size: 12px;
+    }
+
+    footer hr {
+        border-color: white;
+    }
+
+.column {
+    float: left;
+    padding: 10px;
+    height: 350px; /* Should be removed. Only for demonstration */
+}
+
+
+
+.middle {
+    width: 47%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    align-items: center;
+}
+
+.was-validated .splogin {
+    content: '';
+    background: url(../images/username.png) no-repeat;
+    background-size: 25px;
+    padding-left: 3.5rem;
+    background-position-x: 8px;
+    background-position-y: 9px;
+    border-radius: 60px;
+    margin: auto;
+    position: absolute;
+    z-index: 1;
+    width: auto;
+    height: 50px;
+}
+
+.spcalendar {
+    content: '';
+    background: url(../images/calendar.png) no-repeat;
+    background-size: 25px;
+    padding-left: 3.5rem;
+    background-position-x: 3px;
+    background-position-y: 8px;
+    border-radius: 60px;
+    margin: auto;
+    position: absolute;
+    z-index: 1;
+    width: auto;
+    height: 50px;
+}
+
+
+.was-validated .sppassword {
+    content: '';
+    background: url(../images/password.png) no-repeat;
+    background-size: 25px;
+    padding-left: 3.5rem;
+    background-position-x: 8px;
+    background-position-y: 9px;
+    border-radius: 60px;
+    margin: auto;
+    position: absolute;
+    z-index: 1;
+    width: auto;
+    height: 50px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    font-size: 14px;
+}
+
+.button {
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button-primary {
+    background-color: #008CBA;
+}
+/* Blue */
+.button-danger {
+    background-color: #f44336;
+}
+/* Red */
+.button4 {
+    background-color: #e7e7e7;
+    color: black;
+}
+/* Gray */
+.button5 {
+    background-color: #555555;
+}
+/* Black */
+button:hover {
+    opacity: 0.8;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    margin-top: 5px;
+    display: none;
+    position: fixed;
+    background-color: #f9f9f9;
+    width: 260px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px;
+    z-index: 1;
+    text-align: left;
+    font-size: 12px;
+    color: black;
+    border-radius: 3px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.tbMold {
+    font-family: Tahoma;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 9px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+    .tbMold td, .tbMold th {
+        border: 0.5px solid black;
+        padding: 3px;
+    }
+
+    .tbMold th {
+        /*text-align: left; #a2d2e8*/
+        background-color: #04AA6D;
+        color: white;
+        text-align: center;
+    }
+
+    .tbMold td:hover {
+        background-color: aliceblue;
+    }
+
+#tbMold {
+    font-family: Tahoma;
+    border-collapse: collapse;
+    width: auto;
+    
+    text-align: center;
+    border-radius: 3px;
+}
+
+    #tbMold th {
+        border: 0.5px solid black;
+        padding: 3px;
+        font-size: 9px;
+    }
+
+    #tbMold td {
+        border: 0.5px solid black;
+        padding: 3px;
+        font-size:9px;
+    }
+
+    #tbMold th {
+        /*text-align: left;*/
+        background-color: #a2d2e8;
+        color: #023047;
+        text-align: center;
+    }
+
+    #tbMold tr:hover {
+        /*background-color: whitesmoke;*/
+        /*cursor: pointer;*/
+    }
+/*table request sheet*/
+.tbRequest {
+    /*font-family: Tahoma;*/
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+    .tbRequest td, .tbRequest th {
+        border: 1px solid orange;
+        padding: 3px;
+    }
+
+    .tbRequest th {
+        /*text-align: left; #a2d2e8*/
+        background-color: #ffc94a;
+        color: black;
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .tbRequest td:hover {
+        background-color: aliceblue;
+    }
+
+.tbRequestTitle {
+    width: 140px;
+    text-align: left;
+    padding-left: 5px;
+    font-weight: 700;
+    vertical-align: top;
+}
+
+
+.ui-autocomplete {
+    z-index: 9999999 !important;
+}
+
+
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front {
+    z-index: 1056;
+    max-width: fit-content;
+    background: white;
+    border-radius: 0px 0px 8px 8px;
+    height: 200px;
+    overflow: scroll;
+    list-style-type: none;
+    padding-left: 5px;
+}
+
+
+    .ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front li:hover, .ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front li:focus {
+        background: cadetblue;
+        cursor: default;
+        border: 1px solid cornflowerblue;
+        position: inherit;
+        z-index: 1057;
+    }
+
+    .ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front li.ui-menu-item .ui-state-active {
+        background-color: Highlight;
+    }
+
+
+
+
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}

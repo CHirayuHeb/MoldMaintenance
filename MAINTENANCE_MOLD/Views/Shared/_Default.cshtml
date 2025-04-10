@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="~/images/utilities.ico" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/libman/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/libman/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/libman/jquery/additional-methods.min.js"></script>
+    <script src="~/libman/jquery/jquery.min.js"></script>
+    <script src="~/libman/jquery/jquery.validate.min.js"></script>
+    <script src="~/libman/jquery/jquery.validate.unobtrusive.min.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="body-content" style="margin: 0;">
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+﻿@model MAINTENANCE_MOLD.Models.Class
+@{
+
+    Layout = "_Default";
+    ViewData["Title"] = "Mold Maintenance - Login";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+    <title>Login</title>
+</head>
+<body>
+    <div class="wrap" style="font-family: Tahoma">
+        <div class="row">
+            <div class="col-md-6" style="margin: auto;">
+                <img src="~/images/logomold.png" style="width:100%; height:100%" />
+               
+            </div>
+            <div class="col-md-6">
+                @using (Html.BeginForm("Autherize", "Home", FormMethod.Post))
+                {
+                    <br />
+                  
+                    <div class="row was-validated" style="text-align:center;padding-top:5px">
+                        <div style="text-align:center;padding-left : 10px;">
+                            <span style="font-size: xx-large; color:#a21112 ;font-weight:600">Mold</span>
+                            <span style="font-size: xx-large; color:#023047 ;font-weight:600">Maintenance.</span>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <div style="text-align:center;padding-left : 10px;">
+                            <span class="splogin"></span>
+                            <input type="text" asp-for="_ViewLogin.UserId" style="padding-left: 3rem;width:90%" placeholder="User ID" autocomplete="off" class="form-control username" value="" required>
+
+                        </div>
+                        <br />
+                        <div style="text-align:center;padding-left : 10px;">
+                            <span class="sppassword"></span>
+                            <input asp-for="_ViewLogin.Password" type="password" style="padding-left: 3rem;width:90%" placeholder="Password" autocomplete="off" class="form-control password" value="" required>
+                            @*<div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>*@
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+
+                        <span style="color:red;font-size:13px">@Html.DisplayFor(model => model._Error.validation)</span>
+                        <br />
+                        <div style="text-align:center;padding-left : 5px; padding-top:5px">
+                            <button type="submit" style="width:90%">Login</button>
+                        </div>
+
+                        <br />
+                        <input asp-for="_ViewSearch.v_Docno" style="display:none" />
+                        <input asp-for="_ViewSearch.v_MDocno" style="display:none" />
+                        <input asp-for="_ViewSearch.v_Date" style="display:none" />
+                        <input asp-for="_ViewSearch.v_plant" style="display:none" />
+                        <input asp-for="_ViewSearch.v_empcode" style="display:none" />
+                        <input asp-for="_ViewSearch.V_Status" style="display:none" />
+                        <input asp-for="_ViewSearch.v_MoldNo" style="display:none" />
+                    </div>
+                }
+                <br>
+                <footer style="text-align:center;">
+                    <p>&copy; Thai Stanley 2024 - Mold Maintenance <span style="color:orangered;font-weight:600">(Version 2) </span><br />Last update 10/04/2025 10:00</p>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

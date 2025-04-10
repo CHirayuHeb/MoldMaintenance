@@ -1,0 +1,141 @@
+﻿@using System.Security.Claims;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MAINTENANCE_MOLD</title>
+    <link rel="icon" type="image/x-icon" href="~/images/utilities.ico" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
+    <script src="~/libman/jquery/jquery.min.js"></script>
+    <script src="~/libman/jqueryui/jquery-ui.js"></script>
+    <script src="~/libman/jqueryui/jquery-ui.min.js"></script>
+
+    <link href="~/libman/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <script src="~/libman/datepicker/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="~/js/alert.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <link href="~/libman/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/libman/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/js/html2canvas.min.js"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container navbar-header">
+            <div class="navbar-header">
+                <a>
+                    <span style="font-size: xx-large; color:#a21112 ;font-weight:600">Mold</span>
+                    <span style="font-size: xx-large; color:#023047 ;font-weight:600">Maintenance.</span>
+                </a>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <div class="container" style=" text-align: right;">
+                    @if (@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.System)?.Value == "admin")
+                    {
+                        <a asp-area="" asp-controller="Home" asp-action="Index" style="margin-right:20px;font-size:10px;text-decoration:auto">
+                            <img src="~/images/plan.png" style="width:35px;height:35px;margin-right:3px" />Planning
+                        </a>
+
+                        <a href="http://thsweb/aspNet/MoldMaintenance/frmLogin.aspx?id=admincal&&pwd=admincal" target="_blank" style="margin-right:20px;font-size:10px;text-decoration:auto">
+                            <img src="~/images/math-calculator.png" style="width:35px;height:35px;margin-right:3px" />Cal Mold
+                        </a>
+
+                    }
+                    <a asp-area="" asp-controller="createRequestSheet" asp-action="Index" style="margin-right:20px;font-size:10px;text-decoration:auto">
+                        <img src="~/images/resuest.png" style="width:35px;height:35px;margin-right:3px" />Request Mold out plan
+                    </a>
+                    <a asp-area="" asp-controller="SearchManual" asp-action="Index" style="margin-right:20px;font-size:10px;text-decoration:auto">
+                        <img src="~/images/Msearch.png" style="width:35px;height:35px;margin-right:3px" />Search Mold out plan
+                    </a>
+                    <a asp-area="" asp-controller="Search" asp-action="SearchPage" style="margin-right:20px;font-size:10px;text-decoration:auto">
+                        <img src="~/images/seo.png" style="width:35px;height:35px;margin-right:3px" />Search
+                    </a>
+
+                    <a style="margin-right:20px;cursor: pointer;font-size:12px;text-decoration:auto;" class="dropdown">
+                        <img src="~/images/profile.png" style="width:35px;height:35px;margin-right:3px;" />Profile
+                        <div class="dropdown-content">
+                            <span style="font-weight:600;font-size:13px">Thai Stanley Electric Public Co., Ltd.</span><br />
+                            <span>Name: @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.UserData)?.Value</span><br />
+                            <span>Nick Name: @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value</span><br />
+                            <span>Dept: @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value</span><br />
+                            <span>Section: @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Version)?.Value</span><br />
+                            <span>Permission: @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.System)?.Value</span>
+                        </div>
+                    </a>
+
+                    @*<a style="margin-right:20px;cursor: pointer;text-decoration:auto" class="dropdown">
+                            <span>
+                                @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.SerialNumber)?.Value
+                                @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value/
+                                @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value
+                                (@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.System)?.Value)
+                            </span>
+                        </a>*@
+                    <span onclick="confirmAction()" style="margin-left:10px;cursor: pointer;font-size:12px">
+                        <img src="~/images/logout.png" style="width:35px;height:35px;margin-right:3px" />Logout
+                    </span>
+
+
+
+
+                    <script>
+                        function confirmAction() {
+                            let confirmAction = confirm("Are you sure to Logout?");
+                            if (confirmAction) {
+                                   var url = '@Url.Action("Logout", "Home")';
+                                   window.location.href = url;
+                            } else {
+                                alert("Action canceled");
+                            }
+                        }
+
+                    </script>
+
+                    @*<ul class="nav navbar-nav">
+
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="Index">
+                                    <img src="~/images/house.png" style="width:35px;height:35px" />Home
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="About">
+                                    <img src="~/images/logout.png" style="width:35px;height:35px" />Logout
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="Contact"><img src="~/images/profile.png" style="width:35px;height:35px" />Profile</a>
+                            </li>
+
+                        </ul>*@
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container body-content">
+        <br />
+        @RenderBody()
+        <br />
+        <footer>
+            <p>&copy; 2024 - MAINTENANCE_MOLD</p>
+        </footer>
+    </div>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

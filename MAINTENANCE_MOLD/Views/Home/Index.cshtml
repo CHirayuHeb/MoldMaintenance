@@ -1,0 +1,890 @@
+﻿@model MAINTENANCE_MOLD.Models.Class;
+@using System.Security.Claims;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="text-align:center">
+    <span style="font-size: xx-large; color:#a21112 ;font-weight:600">PERIOD Mold</span>
+    <span style="font-size: xx-large; color:#023047 ;font-weight:600">Maintenance</span>
+    <span style="font-size: xx-large; color:green ;font-weight:600">PLANING SHEET</span>
+</div>
+<div class="row" style="margin-bottom:5px">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2" style="text-align:right">
+        @*<button onclick="capture()">แคปหน้า</button>*@
+
+        <button class="btn btn-success" type="submit" style="width:auto;text-align:left; " onclick="capture()">
+            <img src="~/images/capture.png" style="width:30px;height:25px;padding-right:0px;margin-right:2px" />
+            capture Page
+        </button>
+    </div>
+</div>
+
+@using (Html.BeginForm("ActionEvent", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "formData" }))
+{
+    <div class="row" style="background-color:ghostwhite;padding:10px;margin-bottom:10px">
+        <div class="col-md-2">
+            <div class="input-group " style="margin-top:3px">
+                <span class="input-group-text w-25">Plant</span>
+                @*<input type="text" class="form-control" id="txtFrom" style="height:100%" />*@
+                @if (@ViewBag.chkEdit == "edit" || @ViewBag.vPage == "More")
+                {
+                    <input class="form-control" id="i_Plant" type="text" placeholder="Month" autocomplete="off" asp-for="_ViewSearch.v_plant" required style="font-size:13px;margin-top:auto" readonly />
+                }
+                else
+                {
+                    <select class="form-control" placeholder="Plant." asp-for="_ViewSearch.v_plant" id="i_Plant" style="font-size:13px" required>
+                        @*<option value="">Selecte Date</option>*@
+                        <option value="2001">2001</option>
+                        <option value="3001">3001</option>
+                        <option value="3002">3002</option>
+                        <option value="3005">3005</option>
+                        <option value="3007">3007</option>
+                        <option value="3008">3008</option>
+                    </select>
+                }
+
+                @*<select class="form-control" placeholder="Plant." asp-for="_ViewSearch.v_plant" id="i_Plant" style="font-size:13px" required>
+
+                        <option value="2001">2001</option>
+                        <option value="3001">3001</option>
+                        <option value="3002">3002</option>
+                        <option value="3005">3005</option>
+                        <option value="3007">3007</option>
+                        <option value="3008">3008</option>
+                    </select>*@
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="input-group ">
+                <span class="input-group-text w-25" style="margin-top:3px">Month</span>
+                @if (@ViewBag.chkEdit == "edit" || @ViewBag.vPage == "More")
+                {
+                    <input class="datepicker form-control" id="i_date" type="text" placeholder="Month" autocomplete="off" asp-for="_ViewSearch.v_Date" style="font-size:13px;" required readonly />
+                }
+                else
+                {
+                    <input class="datepicker form-control" id="i_date" type="text" placeholder="Month" autocomplete="off" asp-for="_ViewSearch.v_Date" required />
+                }
+            </div>
+        </div>
+        <div class="col-md-1" style="text-align:left;margin-top:3px">
+            @if (@ViewBag.chkEdit == "edit" || @ViewBag.vPage == "More")
+            {<button class="btn btn-success" type="submit" style="width:100px;text-align:left; border:1px solid" value="SEARCH" name="submitButton" disabled>
+                    <img src="~/images/search.png" style="width:30px;height:25px;padding-right:0px;margin-right:2px" />
+                    SEARCH
+                </button>
+            }
+            else
+            {
+                <button class="btn btn-success" type="submit" style="width:100px;text-align:left; border:1px solid" value="SEARCH" name="submitButton">
+                    <img src="~/images/search.png" style="width:30px;height:25px;padding-right:0px;margin-right:2px" />
+                    SEARCH
+                </button>
+            }
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-2">
+            <div class="input-group ">
+                <span class="input-group-text w-28" style="margin-top:3px">Doc No.</span>
+                @*<input  type="hidden"asp-for="_ViewSearch.v_Docno"/>*@
+                <input class="form-control" style="text-align:center;" type="text" asp-for="_ViewSearch.v_Docno" disabled id="i_Docno" />
+                @*<label asp-for="@Html.DisplayFor(_ViewSearch.v_Docno)"></label>*@
+                @*@Html.TextBoxFor(m => m._ViewSearch.v_Docno, new { @class = "form -control" })*@
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group ">
+                <span class="input-group-text w-20" style="margin-top:3px;">Status</span>
+                <input class="form-control" type="text" asp-for="_ViewSearch.V_Status" id="i_status" disabled style="font-size:13px" />
+                @*<span style="color:red;font-size:10px">@Html.DisplayFor(model => model._ViewSearch.V_Status)</span>*@
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" style="background-color:white;padding:8px;border-radius:3px">
+
+
+        <div class="row" style="margin-top: auto;">
+            @*<span>Name: @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Upn)?.Value</span><br />*@
+            <br />
+            <div class="col-md-10">
+
+                @if (@ViewBag.ViewMoldData_count == null)
+                {<span style="font-size:14px;margin-left:10px">
+                        จำนวน:
+                        <span style="font-size:14px;color:blue" id="sp_count">0</span>
+                        แถว
+                    </span>
+
+                    @*<span style="font-size:14px;margin-left:10px">แถว</span>*@
+
+                }
+                else if (@ViewBag.ViewMoldData_count == "0")
+                {
+                    @*<span style="font-size:14px;margin-left:10px" id="sp_count">0</span>
+                        <span style="font-size:14px;margin-left:10px">Rows</span>*@
+                    <span style="font-size:15px;margin-left:10px;color:red" id="sp_cal">ข้อมูลยังไม่มีการ Calculate </span>
+                }
+                else
+                {
+                    <span style="font-size:14px;margin-left:10px">
+                        จำนวน:
+                        <span style="font-size:14px;color:blue" id="sp_count">@ViewBag.ViewMoldData_count</span>
+                        แถว
+                    </span>
+
+                    @*<span style="font-size:14px;margin-left:10px">จำนวน:</span>
+                        <span style="font-size:14px;margin-left:10px" id="sp_count"> @ViewBag.ViewMoldData_count</span>
+                        <span style="font-size:14px;margin-left:10px">แถว</span>*@
+
+                }
+
+
+
+            </div>
+            <div class="col-md-1" style="text-align:center;">
+
+                @*<input class="btn btn-warning" type="button" id="btnSave" value="SAVE" style="background-image: url(/images/save.png);background-size:25px 25px; width:100%;height:35px; border-width:0px;background-repeat: no-repeat;background-position:5px;text-align:end;color:white;">*@
+
+                <button id="btnSave" value="SAVE" style="background-size:25px 25px; width:100%;height:35px; border-width:0px;background-repeat: no-repeat;background-position:5px;text-align:end;color:white" type="button" class="btn btn-warning">
+                    <img src="~/images/save.png" style="width:30px;height:25px;padding-right:0px;margin-right:5px" />
+                    SAVE
+                </button>
+
+
+                @*<button class="btn btn-warning"  id="btnSave" type="submit" style="width:100px;text-align:left;color:white;" value="SAVE" name="submitButton">
+                        <img src="~/images/save.png" style="width:30px;height:25px;padding-right:0px;margin-right:2px" />
+                        SEARCH
+                    </button>*@
+
+                @*<button class="btn btn-warning" type="submit" style="width:100%;text-align:left;" value="SAVE" name="submitButton">
+                        <img src="~/images/save.png" style="width:30px;height:25px;padding-right:5px" />SAVE
+                    </button>*@
+            </div>
+            <div class="col-md-1" style="text-align:left;">
+                @*<input class="btn btn-danger" type="button" value="SEND" style="background-image: url(/images/direct.png);background-size:25px 25px; width:100%;height:35px; border-width:0px;background-repeat: no-repeat;background-position:5px;text-align:end;color:white" onclick="sendMail('@ViewBag.ViewMoldData_count','edit','@Url.Action("History","Home")')">*@
+
+                <button id="btnsend" style="background-size:25px 25px; width:100%;height:35px; border-width:0px;background-repeat: no-repeat;background-position:5px;text-align:end;color:white" type="button" value="send" class="btn btn-primary search" onclick="sendMail('@ViewBag.ViewMoldData_count','edit','@Url.Action("History","Home")')">
+                    <img src="~/images/direct.png" style="width:30px;height:30px;padding-right:0px;margin-right:5px">
+                    SEND
+                </button>
+
+
+                @*<button class="btn btn-danger" type="submit" style="width:100%;text-align:left;" onclick="sendMail('docNo','edit','@Url.Action("History","Home")')">
+                            <img src="~/images/direct.png" style="width:30px;height:25px;padding-right:5px" />
+                            SEND
+                        </button>
+                    <button id="btnsend" style="background-size:25px 25px; width:100%;height:35px; border-width:0px;background-repeat: no-repeat;background-position:5px;text-align:end;color:white" type="button" value="send" class="btn btn-primary search" onclick="'@Url.Action("History","Search")'">
+                        <img src="~/images/direct.png" style="width:30px;height:30px;padding-right:0px;margin-right:5px" />
+                        SEND
+                    </button>*@
+
+
+
+            </div>
+        </div>
+
+        <div style="min-height:300px;overflow-x: auto;">
+            @*<span style="font-size:12px;"> @ViewBag.ViewMoldData_count</span>*@
+            <br />
+            @*<div id="divResult">
+                    @Html.Partial("Tableview", Model)
+                </div>*@
+            <table id="tbMold">
+                <tr>
+                    <th colspan="10">
+                        DIE & MOLD MAINTENANCE DEPARTMENT / LAMP DIVISION
+                    </th>
+                    <th colspan="9">INJECTION Location:</th>
+                    <th colspan="10">IN-HOUS</th>
+                    <th colspan="10">SUPPLIER</th>
+                    <th colspan="10">OTHERS:</th>
+                </tr>
+                <tr>
+                    <th rowspan="3">No</th>
+                    <th rowspan="3" style="width:100px">Model</th>
+                    <th rowspan="3" style="width:80px">Activity No</th>
+                    <th rowspan="3" style="width:100px">Mold Name</th>
+                    <th rowspan="3">Mold Control No.</th>
+                    <th rowspan="3">Mold size(S, M, L, LL)</th>
+                    <th rowspan="3" style="width:30px;">Rank</th>
+                    <th rowspan="3" style="width:30px">Injection (Line No.)</th>
+                    <th rowspan="3" style="width:30px;">
+                        Shot Maintenance
+                    </th>
+                    <th rowspan="3">
+                        Last Shot
+                    </th>
+                    @*<th rowspan="3">
+                            select
+                        </th>*@
+                    <th>Year</th>
+                    @if (@ViewBag.sdays != null)
+                    {
+                        <th colspan=@ViewBag.sdays>@ViewBag.sYear</th>
+                    }
+                    else
+                    {
+                        <th colspan=31>@ViewBag.sYear</th>
+                    }
+
+                    <th rowspan="3" style="width:100px">
+                        Request Sheet No.
+                    </th>
+                    <th rowspan="3" style="width:100px">STATUS.</th>
+                    <th rowspan="3" style="width:50px">Remark.</th>
+                </tr>
+                <tr>
+                    <th>Month</th>
+                    @*<th colspan=@ViewBag.sdays>@ViewBag.sMonth</th>*@
+                    @if (@ViewBag.sdays != null)
+                    {
+                        <th colspan=@ViewBag.sdays>@ViewBag.sMonth</th>
+                    }
+                    else
+                    {
+                        <th colspan=31>@ViewBag.sMonth</th>
+                    }
+                </tr>
+                <tr>
+                    <th>Day</th>
+                    @if (@ViewBag.sdays != null)
+                    {
+                        @for (int i = 1; @i <= @ViewBag.sdays; i++)
+                        {
+                            <th style="width:15px">@i</th>
+                        }
+                    }
+                    else
+                    {
+                        @for (int i = 1; @i <= 30; i++)
+                        {
+                            <th>@i</th>
+                        }
+                        @*<th colspan=31></th>*@
+                    }
+
+
+                </tr>
+
+
+                @if (@ViewBag.ViewMoldData != null)
+                {
+                    var j = 0;
+                    var row = 0;
+
+                    @foreach (var item in @ViewBag.ViewMoldData)
+                    {
+
+
+                        <tr>
+                            <td style="text-align:left" rowspan="2">
+                                @if ((@ViewBag.View_status_Data == "Finished" && @item.v_Plan_LE_StartDate != "0") || @item.v_RequestNo != "")
+                                {
+                                    <a class="pageList" style="font-weight:600" href="@Url.Action("LoadData", "RequestSheet", new { MoldNo = @item.v_arModelNo,
+                                                             Docno = @ViewBag.Docno,
+                                                             MoldName = @item.v_arMoldName,
+                                                             moldday =item.v_mc_sizeMoldcount,
+                                                             vMonth =@ViewBag.Month})">
+                                        @(row += 1)
+                                    </a>
+                                }
+                                else
+                                {
+                                    @(row += 1)
+                                }
+                            </td>
+                            <td style="text-align:left; " rowspan="2">
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_arModel, new {
+    @class = "text-control",
+    @readonly = "true",
+    @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;width:auto;"
+})
+
+                                @*@Html.TextBoxFor(m => m.List_ViewMoldData[j].v_arModel, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;width:auto " })*@
+                            </td>
+                            <td style="text-align:left;" rowspan="2">
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_arModelNo, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;width:40px" })
+                            </td>
+                            <td style="text-align:left" rowspan="2">
+                                @*<span>@Html.DisplayFor(m => m._ViewMoldData[j].v_arMoldName)</span>*@
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_arMoldName, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;width:80px " })
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_arIcsNoInj, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+
+                            </td>
+                            <td style="text-align:left" rowspan="2">
+                                <span style="font-size:10px">@Html.DisplayFor(m => m.List_ViewMoldData[j].v_arMold_Control)</span>
+                            </td>
+                            <td style="text-align:center" rowspan="2">
+                                <span style="font-size:10px">@Html.DisplayFor(m => m.List_ViewMoldData[j].v_mc_sizeMold)</span>
+
+                            </td>
+                            <td style="text-align:center" rowspan="2">
+                                <span style="font-size:10px">@Html.DisplayFor(m => m.List_ViewMoldData[j].v_mcRange)</span>
+                            </td>
+                            <td style="text-align:left" rowspan="2">
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_mcProdLine, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;width:30px" })
+
+                            </td>
+                            <td style="text-align:right" rowspan="2">
+                                <span style="font-size:10px">@Html.DisplayFor(m => m.List_ViewMoldData[j].v_mcShortMa)</span>
+                            </td>
+                            <td style="text-align:right;" rowspan="2">
+                                @if (int.Parse(Model.List_ViewMoldData[j].v_arLastShotQty) > int.Parse(Model.List_ViewMoldData[j].v_mcShortMa))
+                                {
+                                    <span style="font-size:10px; color:red">@Html.DisplayFor(m => m.List_ViewMoldData[j].v_arLastShotQty)</span>
+                                    @*@Html.TextBoxFor(m => m.List_ViewMoldData[j].v_arLastShotQty, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;width:40px;color:red;text-align: end" })*@
+                                }
+                                else
+                                {
+                                    <span style="font-size:10px">@Html.DisplayFor(m => m.List_ViewMoldData[j].v_arLastShotQty)</span>
+                                    @*@Html.TextBoxFor(m => m.List_ViewMoldData[j].v_arLastShotQty, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;width:40px;text-align: end" })*@
+                                }
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_arLastShotQty, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;width:40px;text-align: end;display:none" })
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_DM_StartDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_DM_EndDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_datePlus, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_mc_sizeMoldcount, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+
+                            </td>
+
+                            <td style="font-size:8px">
+                                PLAN
+                            </td>
+
+                            @if (@ViewBag.View_status_Data == "Finished")/*start 03*/
+                            {
+                                @for (int i = 1; @i <= @ViewBag.sdays; i++)
+                                {
+                                    //yellow
+                                    @if ((@item.v_date == @i) || (@item.v_date < @i && i < @item.v_datePlus))
+                                    {
+                                        <td style="background-color:yellow;">
+                                            @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                            @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_EndDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                        </td>
+                                    }
+
+                                    //blue
+                                    else if (@i >= @item.v_date_Change_LE_StartDate && @item.v_datePlus_v_Change_LE_EndDate >= @i)
+                                    {
+                                        <td style="background-color:blue; color:white">
+                                            @*@Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "text-control", id = @j, @style = "display:none" })*@
+                                            @*@Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "form-check-input", id = @item.v_arModel + @i, @style = "display:none" })*@
+                                        </td>
+                                    }
+                                    //gray
+                                    else if (@i >= @item.v_date_LE_StartDate && @item.v_datePlus_LE_StartDate >= @i)
+                                    {
+                                        @if (@item.v_Change_LE_StartDate != "")
+                                        {
+                                            <td style="background-color:gray; color:white">
+                                                @*@Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                                    @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_EndDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })*@
+                                                @*@Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "text-control", id = @j, @style = "display:none" })*@
+                                                @*@Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "form-check-input", id = @item.v_arModel + @i, @style = "display:none" })*@
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td style="background-color:blue; color:black">
+                                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_EndDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                                @*@Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "text-control", id = @j, @style = "display:none" })*@
+                                                @*@Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "form-check-input", id = @item.v_arModel + @i, @style = "display:none" })*@
+                                            </td>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                    @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                    @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_EndDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                    @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Change_LE_StartDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                    @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Change_LE_EndDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+
+                                }
+
+                            }
+                            else if (@ViewBag.View_status_Data == "Waiting Approve by Planing Lamp (Adjust Plan)") /*start 02*/
+                            {
+                                @for (int i = 1; @i <= @ViewBag.sdays; i++)
+                                {
+                                    @if ((@item.v_date == @i) || (@item.v_date < @i && i < @item.v_datePlus))
+                                    {
+                                        <td style="background-color:yellow;">
+                                            @if (@item.v_date_LE_StartDate == @i)
+                                            {
+                                                if (@ViewBag.chkEdit == "edit")
+                                                //if ((@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Upn)?.Value == "edit") && (@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.SerialNumber)?.Value == @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Actor)?.Value))
+                                                {
+                                                    @*@Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @type = "radio", @checked = "checked", id = @item.v_arModel + @i })*@
+                                                    @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @type = "radio", id = @item.v_arModel + @i })
+                                                }
+                                                else
+                                                {
+                                                    @*@Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @type = "radio", @checked = "checked", id = @item.v_arModel + @i, @style = "display:none" })*@
+                                                    @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @type = "radio", id = @item.v_arModel + @i, @style = "display:none" })
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (@ViewBag.chkEdit == "edit")
+                                                //if ((@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Upn)?.Value == "edit") && (@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.SerialNumber)?.Value == @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Actor)?.Value))
+                                                {
+                                                    @Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "text-control", id = @item.v_arModel + @i, name = @item.v_arModel + @i })
+                                                }
+                                                else
+                                                {
+                                                    @Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "text-control", id = @item.v_arModel + @i, name = @item.v_arModel + @i, @style = "display:none" })
+                                                }
+                                            }
+
+                                        </td>
+                                    }
+
+                                    else if (@i >= @item.v_datePlus && @item.v_dateend >= @i)
+                                    {
+
+                                        @*<td style="background-color:green; color:black">*@
+                                        @if (@item.v_date_LE_StartDate == @i)
+                                        {
+                                            if (@ViewBag.chkEdit == "edit")
+                                            //if ((@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Upn)?.Value == "edit") && (@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.SerialNumber)?.Value == @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Actor)?.Value))
+                                            {
+                                                <td style="background-color:blue; color:black">
+                                                    @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @type = "radio", @checked = "checked", id = @item.v_arModel + @i })
+                                                </td>
+
+                                            }
+                                            else
+                                            {
+                                                <td style=" color:black">
+                                                    @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @type = "radio", @checked = "checked", id = @item.v_arModel + @i, @style = "display:none" })
+
+                                                </td>
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (@ViewBag.chkEdit == "edit")
+                                            //if ((@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Upn)?.Value == "edit") && (@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.SerialNumber)?.Value == @Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Actor)?.Value))
+                                            {
+                                                <td style="background-color:blue; color:black">
+                                                    @Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "text-control", id = @item.v_arModel + @i, name = @item.v_arModel + @i })
+                                                </td>
+
+                                            }
+                                            else
+                                            {
+                                                <td style=" color:black">
+                                                    @Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "text-control", id = @item.v_arModel + @i, name = @item.v_arModel + @i, @style = "display:none" })
+                                                </td>
+                                            }
+                                        }
+                                        @*</td>*@
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @if (@ViewBag.chkEdit == "edit")
+                                            {
+                                                @Html.RadioButtonFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, @i, new { @class = "text-control", id = @item.v_arModel + @i, name = @item.v_arModel + @i })
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                            @*//16/07/2024 11:58 meeting with DMM*@
+                                        </td>
+                                    }
+
+                                }
+                            }
+                            else /*start 01*/
+                            {
+                                @for (int i = 1; @i <= @ViewBag.sdays; i++)
+                                {
+                                    @if ((@item.v_date == @i) || (@item.v_date < @i && i < @item.v_datePlus))
+                                    {
+                                        <td style="background-color:yellow;">
+                                            @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                            @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_EndDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                        </td>
+                                    }
+                                    else if (@i >= @item.v_datePlus && @item.v_dateend >= @i)
+                                    {
+                                        <td style="background-color:blue; color:black">
+                                            @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_StartDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                            @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Plan_LE_EndDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+
+                                }
+                            }
+                            <td style="text-align:center; " rowspan="2">
+                                @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_RequestNo, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;width:80px" })
+                                @*@Html.TextBoxFor(m => m.List_ViewMoldData[j].v_RequestNo, new { @class = "text-control", @readonly = "true" })*@
+                            </td>
+                            <td style="text-align:center" rowspan="2">
+                                @if (Model.List_ViewMoldData[j].v_ReqNostatus != null)
+                                {
+                                    @if (Model.List_ViewMoldData[j].v_ReqNostatus.Contains("Finished") == true)
+                                    {
+
+                                        <img src="~/images/check.png" alt="icon" style="height: 23px; width: 23px;" />
+                                    }
+                                    else if (Model.List_ViewMoldData[j].v_ReqNostatus.Contains("Wait"))
+                                    {
+
+                                        <img src="~/images/hourglass.png" alt="icon" style="height: 23px; width: 23px;" />
+                                    }
+                                }
+                                @*<span style="font-size:10px; @(Model.List_ViewMoldData[j].v_ReqNostatus.Contains("Finished") ? "color:green":"")">@Html.DisplayFor(m => m.List_ViewMoldData[j].v_ReqNostatus)</span>*@
+
+
+
+                                @*@Html.TextAreaFor(m => m.List_ViewMoldData[j].v_ReqNostatus, new { @class = "text-control", @style = "font-size:10px;", @rows = "3", @readonly = "true" })*@
+                            </td>
+                            <td style="text-align:left" rowspan="2">
+                                <span style="font-size:10px;">@Html.DisplayFor(m => m.List_ViewMoldData[j].v_Remark)</span>
+                                @Html.TextAreaFor(m => m.List_ViewMoldData[j].v_Remark, new { @class = "text-control", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none", @rows = "3", @readonly = "true" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:8px">ACTUAL</td>
+                            @for (int i = 1; @i <= @ViewBag.sdays; i++)
+                            {
+                                @if (@i >= @item.v_date_Actual_StartDate && @i < @item.v_datePlus_Actual_EndDate)
+                                {
+                                    <td style="background-color:green;">
+                                        @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Actual_StartDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                        @Html.TextBoxFor(m => m.List_ViewMoldData[j].v_Actual_EndDate, new { @class = "text-control", @readonly = "true", @style = "font-size:10px;padding:0px;border:0px;border-radius:0px;display:none" })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+
+
+                            }
+
+                        </tr>
+                        j = j + 1;
+                    }
+                }
+
+
+
+            </table>
+
+        </div>
+
+    </div>
+    <br>
+
+    <div class="row" style="background-color:white;padding:10px;border-radius:3px;text-align:left">
+        <div class="col-md-3">
+            <h5>Remark</h5>
+            <table class="tbMold" style="text-align:left">
+                <tr>
+                    <td>- RANK A : เดินงานผลิตทุกวัน</td>
+                </tr>
+                <tr>
+                    <td>- RANK B : เดินงานผลิตสัปดาห์ละ 1 ครั้ง</td>
+                </tr>
+                <tr>
+                    <td>- RANK C : เดินงานผลิตเดือนละ  1 ครั้ง</td>
+                </tr>
+                <tr>
+                    <td>- RANK D : เดินงานผลิตระหว่าง 30 - 120 วัน  1 ครั้ง</td>
+                </tr>
+                <tr>
+                    <td>- RANK E : เดินงานผลิตในช่วง 120 วันขึ้นไป  1 ครั้ง</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <br />
+
+            <table class="tbMold" style="text-align:left">
+                <tr>
+                    <td>
+                        Compare the size with the weight of mold
+                    </td>
+                    <td>
+                        Cleaning time of each mold size
+                    </td>
+                </tr>
+                <tr>
+                    <td>S  = 0 - 499  Kg.</td>
+                    <td>S = 1 Day</td>
+                </tr>
+                <tr>
+                    <td>M  = 500 - 999  Kg.</td>
+                    <td>M = 1 Day</td>
+                </tr>
+                <tr>
+                    <td>L  = 1,000 - 1,999  Kg.	</td>
+                    <td>L = 2 Day</td>
+                </tr>
+                <tr>
+                    <td>LL = 2,000  Kg. ขึ้นไป	</td>
+                    <td>LL = 2 Day</td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="col-md-3">
+            <br />
+
+            <table class="tbMold" style="text-align:left">
+                <tr>
+                    <td colspan="2">
+                        Meaning of color
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:yellow;width:60px"></td>
+                    <td>
+                        @*Cleaning mold plan make by DMM*@
+                        Cleaning mold plan by Program.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:blue;width:60px"></td>
+                    <td>
+                        Cleaning mold plan adjust by Planing Lamp.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:green;width:60px"></td>
+                    <td>
+                        Cleanining mold actual
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+
+    <div class="modal modal-lg fade" id="myModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
+         style="opacity:1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" id="myModalBodyDiv1">
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Modal SendMail -->
+
+
+
+<script>
+
+    $('input[type="radio"]').on('click', function () {
+        console.log("111");
+        //check = $(this).is(':checked');
+        var myRadio = $('input[type="radio"]:checked');
+        //console.log("11122" & myRadio.value);
+        myRadio.on('click', function () {
+            if (myRadio.attr('checked')) {
+                $(this).removeAttr('checked');
+                $(this).prop('checked', false);
+            } else {
+                $(this).attr('checked', 'checked');
+                $(this).prop('checked', true);
+            }
+        });
+    });
+
+
+
+    $('#tbMold').on('click', 'td', function (ev) {
+
+
+    })
+
+    function myFunction(x) {
+
+        alert("Row index is: " + x);
+    }
+
+    $('.datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: 'yyyy/mm'
+
+    });
+    function checkmail() {
+        const mrow = document.getElementsByName("rowcount")[0].value;
+        if (mrow == "") {
+            alert("กรุณากดปุ่ม LOAD ก่อน เพื่อไปขั้นตอนถัดไป !!!!!")
+            return
+        }
+        //else {
+        //    alert(mrow)
+        //}
+
+
+    }
+    $("#btnSave").click(function () {
+        console.log("Save_data");
+        document.getElementById('i_status').removeAttribute("disabled");
+        document.getElementById('i_Docno').removeAttribute("disabled");
+        var mydata = $("#formData").serialize();
+        var v_status = document.getElementById('i_status').value;
+
+       console.log("v_status" +  v_status);
+       // console.log("ViewBag.ViewMoldData_count" + @ViewBag.ViewMoldData_count);
+        //var myformdata = $("#myForm").serialize() + '&' + $("#formData").serialize();
+        //const formdata = new FormData(document.forms.item(0));
+       // var sp_count = document.getElementById('sp_count').value;
+       //// console.log(" document.getElementById('sp_count').value" & sp_count);
+        if (v_status == 'Finished') {
+            document.getElementById('i_status').disabled = true;
+            document.getElementById('i_Docno').disabled = true;
+           // console.log("0");
+            Swal.fire({
+                icon: 'warning',
+                title: 'warning',
+                text: "You don't have permission to access",
+            })
+        }
+        else {
+            console.log("v_status2 " + v_status);
+                  $.ajax({
+             type: "POST",
+             url: '@Url.Action("SaveData", "Home")',
+             data: mydata,
+             beforeSend: function () {
+                 swal.fire({
+                     html: '<h5>Loading...</h5>',
+                     showConfirmButton: false,
+                     onRender: function () {
+                         // there will only ever be one sweet alert open.
+                         //$('.swal2-content').prepend(sweet_loader);
+                     }
+                 });
+             },
+                success: async function (config) {
+                   // alert(config.c1);
+                    document.getElementById('i_status').disabled = true;
+                    document.getElementById('i_Docno').disabled = true;
+                    if (config.c1 == "S") {
+                        $("#loaderDiv").hide();
+                        await $("#myModal1").modal("hide");
+                        swal.fire({
+                            title: 'SUCCESS',
+                            icon: 'success',
+                            html: "Save data success  <br> Doc no: " + config.c4,
+
+                        })
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById('i_status').value = config.c5;
+                                    document.getElementById('i_Docno').value = config.c4;
+
+                                       $.ajax({
+                                             type: "POST",
+                                             url: '@Url.Action("Index")',
+                                           data: mydata,
+                                    });
+
+
+
+                                    // location.reload();
+                                    @*var a = "?classs=" + config.c3;
+                                    // $.get('https://api.ipify.org?format=json')*@
+                                   @*window.location.href = '@Url.Action("Index", "Home", mydata)';*@
+                                   @*window.location.href = @Url.Action("Search", "Search", config.c3)*@
+                                }
+
+                            })
+
+
+                    } else if (config.c1 == "E") {
+                        $("#loaderDiv").hide();
+
+                        await $("#myModal1").modal("hide");
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ERROR',
+                            text: config.c2,
+                        })
+
+                    } else if (config.c1 == "N") {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'warning',
+                            text: config.c2,
+                        })
+                    }
+
+
+                }
+         });
+        }
+
+
+
+   });
+
+
+
+    @*$("#btnSave1").click(function () {
+         $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveData", "Home", new { mode = "" })',
+                data: "11",
+                success:  function (config) {
+                     alert(config.c3);
+
+                        $("#loaderDiv").hide();
+                         $("#myModal1").modal("hide");
+                        swal.fire({
+                            title: 'SUCCESS',
+                            icon: 'success',
+                            text: "Send Mail Aleady",
+
+                        })
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    var a = "?test=" + config.c1;
+                                    // $.get('https://api.ipify.org?format=json')
+                                    window.location.href = '@Url.Action("Index", "Home")' + a;
+                                }
+
+                            })
+
+
+
+                }
+            });
+
+    });*@
+
+</script>

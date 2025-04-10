@@ -1,0 +1,796 @@
+﻿@model MAINTENANCE_MOLD.Models.Class;
+@*@model MAINTENANCE_MOLD.Models.Class;*@
+@using System.Security.Claims;
+@{
+    ViewData["Title"] = "Manual Request sheet Page";
+}
+<style>
+    .btn-small {
+        width: 100px;
+    }
+</style>
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="text-align:center">
+    <span style="font-size: xx-large; color:orange ;font-weight:600">Manual</span>
+    <span style="font-size: xx-large; color:#023047 ;font-weight:600">Mold Maintenance</span>
+    <span style="font-size: xx-large; color:darkorange ;font-weight:600">REQUEST SHEET</span>
+</div>
+<div class="row" style="margin-bottom:5px">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2" style="text-align:right">
+        @*<button onclick="capture()">แคปหน้า</button>*@
+
+        <button class="btn btn-success" type="submit" style="width:auto;text-align:left; " onclick="capture()">
+            <img src="~/images/capture.png" style="width:30px;height:25px;padding-right:0px;margin-right:2px" />
+            capture Page
+        </button>
+    </div>
+</div>
+<div class="row" style="margin-bottom:2px;background-color:none;padding:8px;border-radius:3px">
+
+    <div class="col-md-11">
+    </div>
+    <div class="col-md-1">
+        <button id="btnCancel" onclick="btn_CancelManual('@Url.Action("Cancel","ManualRequestSheet")')" style="background-size:25px 25px; width:100%;height:35px; border-width:0px;background-repeat: no-repeat;background-position:5px;text-align:end;color:white;
+                @(@Model.ViewRequest.v_requestSheetNo != null && @Model.ViewRequest.v_status.Contains("Waiting")  ? " " : "display: none;") " type="button" class="btn btn-danger">
+            <img src="~/images/cancel (1).png" style="width:30px;height:25px;padding-right:0px;margin-right:5px" />
+            CANCEL
+        </button>
+    </div>
+
+</div>
+
+
+@using (Html.BeginForm("ActionEvent", "ManualRequestSheet", FormMethod.Post, new { enctype = "multipart/form-data", id = "formManualRequest" }))
+{
+    <div class="row" style="background-color:white;padding:8px;border-radius:3px">
+        <div class="row" style="background-color:ghostwhite;margin: auto;">
+            <div class="col-md-3">
+                <div class="input-group ">
+                    <span class="input-group-text w-30" style="margin-top:3px">
+                        Issued Dated
+                    </span>
+                    <input class=" form-control " id="i_date" type="text" autocomplete="off" asp-for="ViewRequest.v_Issue_date" readonly />
+
+                    <input class=" form-control " id="i_date" type="text" autocomplete="off" asp-for="ViewRequest.v_docno" style="display:none" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group ">
+                    <span class="input-group-text w-30" style="margin-top:3px">
+                        Request Sheet No
+                    </span>
+                    <input class=" form-control" id="i_reqNo" type="text" autocomplete="off" asp-for="ViewRequest.v_requestSheetNo" readonly />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group ">
+                    <span class="input-group-text w-30" style="margin-top:3px">
+                        Status
+                    </span>
+                    <input class=" form-control" id="i_status" type="text" autocomplete="off" asp-for="ViewRequest.v_status" readonly />
+                </div>
+            </div>
+            <div class="col-md-1">
+
+
+                <button class="btn btn-success" id="btnsavefile" type="submit" style="width:100px;text-align:left; border:1px solid;display:none" value="saveFile" name="submitButton">
+                    <img src="~/images/search.png" style="width:30px;height:25px;padding-right:0px;margin-right:2px" />
+                    savefile
+                </button>
+                <button class="btn btn-success" id="btnsaveMailfile" type="submit" style="width:100px;text-align:left; border:1px solid;display:none" value="btnsaveMailfile" name="submitButton">
+                    <img src="~/images/search.png" style="width:30px;height:25px;padding-right:0px;margin-right:2px" />
+                    savemailfile
+                </button>
+
+
+
+                @*<button id="btnSave" name="submitButton" value="SAVE" style="background-size:25px 25px; width:100%;height:35px; border-width:0px;background-repeat: no-repeat;background-position:5px;text-align:end;color:white" type="button" class="btn btn-warning">
+                        <img src="~/images/save.png" style="width:30px;height:25px;padding-right:0px;margin-right:5px" />
+                        SAVE
+                    </button>*@
+            </div>
+            <div class="col-md-1">
+                <button id="btnsend" style="background-size:25px 25px; width:100%;height:35px; border-width:0px;background-repeat: no-repeat;background-position:5px;text-align:end;color:white" type="button" value="send" class="btn btn-primary search" onclick="sendMailRequestManual('@ViewBag.DocNo','Sendmail','@Url.Action("History","ManualRequestSheet",new {id = @ViewBag.DocNo })')">
+                    <img src="~/images/direct.png" style="width:30px;height:30px;padding-right:0px;margin-right:5px" />
+                    SEND
+                </button>
+            </div>
+
+        </div>
+
+        <div style="background-color:antiquewhite;margin-top: 5px;padding:5px; border:1px solid black">
+            <div class="row" style="padding:5px">
+                <div class="col-md-12" style="background-color:orange;">
+                    ข้อมูลเบื้องต้นเกี่ยวกับแม่พิมพ์ (DATA OF MOLD)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group ">
+                        <input class="form-control" id="i_month" style="width:90px;display:none" type="text" autocomplete="off" asp-for="ViewRequest.v_month" />
+                        <input class="form-control" id="i_plant" style="width:90px;display:none" type="text" autocomplete="off" asp-for="ViewRequest.v_arplant" />
+                        <span class="input-group-text w-10" style="margin-top:3px ;width:130px">CUSTOMER NAME</span>
+                        <input class="form-control" id="i_date" style="width:90px" type="text" autocomplete="off" asp-for="ViewRequest.v_customer" readonly />
+                        <span class="input-group-text w-10" style="margin-top:3px;width:130px">Model / Type / Part</span>
+                        <input class=" form-control" id="i_date" type="text" autocomplete="off" asp-for="ViewRequest.v_model" readonly />
+                        <span class="input-group-text w-10" style="margin-top:3px;width:130px">MOLD No. & NAME</span>
+                        <input class=" form-control" id="i_date" type="text" autocomplete="off" asp-for="ViewRequest.v_moldNo_Name" readonly />
+                    </div>
+
+                    <div class="input-group ">
+                        <span class="input-group-text w-10" style="margin-top:3px;width:130px">ICS MOLD No.</span>
+                        <input class="form-control" id="i_date" style="width:90px" type="text" autocomplete="off" asp-for="ViewRequest.v_icsMoldNo" readonly />
+                        <span class="input-group-text w-10" style="margin-top:3px;width:130px">ICS MOLD NAME</span>
+                        <input class="form-control" id="i_date" type="text" autocomplete="off" asp-for="ViewRequest.v_icsMoldName" readonly />
+                        <span class="input-group-text w-10" style="margin-top:3px;width:130px">MOLD CONTROL No.</span>
+                        <input class="form-control" id="i_date" type="text" autocomplete="off" asp-for="ViewRequest.v_moldControlNo" readonly />
+                    </div>
+                    <div class="input-group ">
+                        <span class="input-group-text w-10" style="margin-top:3px;width:130px">RANK MOLD.</span>
+                        <input class=" form-control" id="i_date" style="width:90px" type="text" autocomplete="off" asp-for="ViewRequest.v_rankMold" readonly />
+                        <input class=" form-control" id="i_moldday" style="width:90px;display:none" type="text" autocomplete="off" asp-for="ViewRequest.v_moldday" readonly />
+                        <span class="input-group-text w-10" style="margin-top:3px;width:130px">ICS INJECTION R , L</span>
+                        <input class=" form-control" id="i_date" type="text" autocomplete="off" asp-for="ViewRequest.v_icsInjectionNo" readonly />
+                        <span class="input-group-text w-10" style="margin-top:3px;width:130px">MOLD ACTIVITY No.</span>
+                        <input class=" form-control" id="i_date" type="text" autocomplete="off" asp-for="ViewRequest.v_moldActivityNo" readonly />
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="input-group ">
+
+                                <span class="input-group-text w-10" style="margin-top:3px;width:130px">MOLD WEIGHT</span>
+                                <input class="form-control" style="width:90px" type="text" autocomplete="off" asp-for="ViewRequest.v_moldWeight" readonly />
+                                <span class="input-group-text w-10" style="margin-top:3px;width:30px">Kg.</span>
+                                <span class="input-group-text w-10" style="margin-top:3px;width:130px;font-size:8px">MOLD SIZE (X x Y x Z)</span>
+                                <input class="form-control" style="width:90px" type="text" autocomplete="off" asp-for="ViewRequest.v_moldSize" readonly />
+                                <span class="input-group-text w-10" style="margin-top:3px;width:40px">mm.</span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group ">
+                                <span class="input-group-text w-30" style="margin-top:3px;width:160px">INJECTION PRODUCT BY</span>
+                                <input class="form-control" style="@(@ViewBag.step == "2" ? "pointer-events: none;width:50px" : "width:50px")" type="text" autocomplete="off" asp-for="ViewRequest.v_injectionProductBy" />
+                            </div>
+
+                            @*<div class="row">
+
+                                    <div class="col-md-4" style="text-align:right;margin-left:10px">
+                                        <span class="input-group-text w-10" style="margin-top:3px;width:145px;height:32px">INJECTION PRODUCT BY.</span>
+                                    </div>
+                                    <div class="col-md-3" style="font-size:10px;text-align:center">
+                                        <input type="radio" name="chkIn" class="radioCheck" checked>
+                                        <span style="font-size:8px;font-weight:500;vertical-align:super">
+                                            IN-HOUSE LINE No
+                                        </span>
+
+
+
+
+                                    </div>
+                                    <div class="col-md-3" style="font-size:10px;text-align:center">
+                                        <input type="radio" name="chkIn" class="radioCheck">
+                                        <span style="font-size:8px;font-weight:500;vertical-align:super">
+                                            SUPPIER BY
+                                        </span>
+
+                                    </div>
+                                </div>*@
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="input-group ">
+                                <span class="input-group-text w-10" style="margin-top:3px;width:130px">RESPONSIBILITY</span>
+                                <input class="form-control" id="i_responby" style="width:90px" type="text" autocomplete="off" asp-for="ViewRequest.v_responsibility" readonly />
+                                <span class="input-group-text w-10" style="margin-top:3px;width:130px">SECTION</span>
+                                <input class="form-control" id="i_section" type="text" autocomplete="off" asp-for="ViewRequest.v_section" readonly />
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <div class="col-md-4" style="font-size:11px;font-weight:600">
+                    <span>
+                        แนบรูปภาพหรือรายละเอียดของแม่พิมพ์และชิ้นงาน
+                    </span>
+                    <br />
+                    <span>
+                        (THE PICTURE OR DETAIL OF MOLD AND PRODUCT)
+                    </span>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input_container">
+                        <input asp-for="ViewRequest.v_fileName1" id="ddFileName1" style="width: 100%;" type="file" />
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <input asp-for="ViewRequest.v_fileName" id="id_file" class="form-control" style="width: 60%; " type="text" readonly />
+
+                    @if (@Model.ViewRequest != null)
+                    {
+                        @if (@Model.ViewRequest.v_fileName != "" && @Model.ViewRequest.v_fileName != null)
+                        {
+                            <a href="@Url.Action("openFile", "RequestSheet", new { pathFile = @Model.ViewRequest.v_fileName })" class="btn-image" target="_blank">
+                                <span>
+                                    <img id="btnOpenfile" src="~/images/open-folder.png" class="btn-image" style="cursor: pointer; height:30px;width:30px">
+                                </span>
+                                Open file
+                            </a>
+                        }
+                    }
+
+                </div>
+
+            </div>
+
+            <hr />
+            <div class="row">
+                <div class="col-md-2">
+                    <span style="font-size:10px;font-weight:800"> MASTER SCHEDULE DATE</span>
+                </div>
+                <div class="col-md-2" style="@(@ViewBag.step == "2" ? "pointer-events: none;text-align:left" : "text-align:left")">
+                    <span class="spcalendar">
+                    </span>
+                    <input class="datepicker form-control" type="text" autocomplete="off" style="width:100%;text-align:center;font-size:13px" asp-for="ViewRequest.v_planDmStartDate" id="m_MasterSt" />
+                    <span class="spcalendar">
+                    </span>
+                    <input class="datepicker form-control" type="text" autocomplete="off" style="width:100%;text-align:center;font-size:13px" asp-for="ViewRequest.v_planDmEndDate" id="m_MasterEd" />
+                </div>
+                <div class="col-md-8" style="font-size:10px">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span style="font-weight:600">
+                                    *RESPOND BY:
+                                </span>
+                            </div>
+                            <div class="col-md-1">
+                                @Html.RadioButtonFor(m => Model.ViewRequest.v_arplant, "DMM", new { @class = "radioCheck ", id = "statusplant", disabled = "disabled" })
+                                <span> DMM</span>
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.RadioButtonFor(m => Model.ViewRequest.v_arplant, "3001", new { @class = "radioCheck ", id = "statusplant", disabled = "disabled" })
+                                <span>LE1</span>
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.RadioButtonFor(m => Model.ViewRequest.v_arplant, "3002", new { @class = "radioCheck ", id = "statusplant", disabled = "disabled" })
+                                <span>LE2</span>
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.RadioButtonFor(m => Model.ViewRequest.v_arplant, "3005", new { @class = "radioCheck ", id = "statusplant", disabled = "disabled" })
+                                <span>LE5</span>
+                            </div>
+                            <div class="col-md-1">
+                                @Html.RadioButtonFor(m => Model.ViewRequest.v_arplant, "3007", new { @class = "radioCheck ", id = "statusplant", disabled = "disabled" })
+                                <span>LE7</span>
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.RadioButtonFor(m => Model.ViewRequest.v_arplant, "3008", new { @class = "radioCheck ", id = "statusplant", disabled = "disabled" })
+                                <span>LE8</span>
+
+                            </div>
+
+                        </div>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2">
+                                @*@Html.RadioButtonFor(m => Model.ViewRequest.v_arplant, "3001", new { @class = "radioCheck ", id = "statusplant" })*@
+                                <span style="font-weight:600">GO AS PLANNED</span>
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.RadioButtonFor(m => Model.ViewRequest.chkPLANNED, "1", new { @class = "radioCheck ", id = "statuschkplan", disabled = "disabled" })
+                                <input class=" form-control" type="text" autocomplete="off" style="width:100%;text-align:end;font-size:13px;display:none" asp-for="ViewRequest.chkPLANNED" />
+
+                            </div>
+                            <div class="col-md-8">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span style="font-weight:600">NOT GO AS PLANNED</span>
+                            </div>
+
+                            <div class="col-md-1">
+                                @Html.RadioButtonFor(m => Model.ViewRequest.chkPLANNED, "0", new { @class = "radioCheck ", id = "statuschkplan", disabled = "disabled" })
+                            </div>
+                            <div class="col-md-9" style="@(@ViewBag.step == "2" ? "pointer-events: none;" : "")">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <span style="color:red;font-size:8px">*NEW SCHEDULE DATE</span>
+                                        <span class="spcalendar" style="margin-top:-8px;margin-left:2px"></span>
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <input class="datepicker form-control" type="text" autocomplete="off" style="width:100%;text-align:center;font-size:10px" asp-for="ViewRequest.v_planLeStartDate" readonly id="txtRplanLeStartDate" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        @*<span class="spcalendar">
+                                            </span>*@
+                                        <input class="datepicker form-control" type="text" autocomplete="off" style="width:100%;text-align:center;font-size:10px" asp-for="ViewRequest.v_planLeStartDate" readonly />
+                                    </div>
+                                    <div class="col-md-5">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <span style="color:red;font-size:8px">*CHANGE SCHEDULE DATE</span>
+                                        <span class="spcalendar" style="margin-top:-8px;margin-left:2px"></span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input class="datepicker form-control" id="i_chagestart" type="text" autocomplete="off" style="width:100%;text-align:center;font-size:10px" asp-for="ViewRequest.v_Change_LE_StartDate" readonly />
+                                    </div>
+                                    <div class="col-md-2">
+                                        @*<span class="spcalendar">
+                                            </span>*@
+                                        <input class="datepicker form-control" id="i_chageend" type="text" autocomplete="off" style="width:100%;text-align:center;font-size:10px" asp-for="ViewRequest.v_Change_LE_EndDate" readonly />
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-group ">
+                                            <span class="input-group-text w-30" style="margin-top:0px">
+                                                ระบุสาเหตุ
+                                            </span>
+                                            @if (ViewBag.status == "Finished")
+                                            {
+                                                <textarea class="form-control" rows="3" id="i_comment" autocomplete="off" asp-for="ViewRequest.v_Remark" readonly></textarea>
+                                            }
+                                            else
+                                            {
+                                                <textarea class="form-control" rows="3" id="i_comment" autocomplete="off" asp-for="ViewRequest.v_Remark"></textarea>
+                                            }
+
+
+
+                                            @*<input class=" form-control" type="text" autocomplete="off" style="text-align:start;font-size:13px" asp-for="ViewRequest.v_Remark" />*@
+                                            @*<input class="form-control" type="text" autocomplete="off" />*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+            <hr />
+
+            <div class="row">
+                <div class="col-md-2">
+                    <span style="font-size:10px;font-weight:800">
+                        CLEANING MOLD
+                    </span>
+
+                </div>
+                <div class="col-md-3" style="text-align:left">
+                    <div class="input-group ">
+                        <span class="input-group-text w-30" style="margin-top:3px;width:135px">
+                            CURRENT SHOT
+                        </span>
+                        <input class="form-control" id="i_date" type="text" autocomplete="off" asp-for="ViewRequest.v_arLastShotQty" readonly />
+                        <span class="input-group-text w-30" style="margin-top:3px;">
+                            SHOTS
+                        </span>
+                    </div>
+                    <div class="input-group ">
+                        <span class="input-group-text w-30" style="margin-top:3px;width:135px">
+                            TYPE CLEANING MOLD
+                        </span>
+                        <input class=" form-control" id="i_date" type="text" autocomplete="off" asp-for="ViewRequest.v_mcShortMa" readonly />
+                        <span class="input-group-text w-30" style="margin-top:3px">
+                            SHOTS
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span style="font-size:10px;font-weight:500">
+                                DATE FOR MOLD IN DMM
+                            </span>
+
+                        </div>
+                        <div class="col-md-4" style="text-align:left">
+
+                            @if (ViewBag.status == "Finished")
+                            {
+                                <span class="spcalendar">
+                                </span>
+                                <input class="form-control" type="text" autocomplete="off" style="width:80%;text-align:center;font-size:13px" asp-for="ViewRequest.v_ActualStartDate" readonly />
+
+                            }
+                            else
+                            {
+                                <span class="spcalendar">
+                                </span>
+                                <input class="datepicker form-control" type="text" id="txtR_ActualStartDate" autocomplete="off" style="width:80%;text-align:center;font-size:13px" asp-for="ViewRequest.v_ActualStartDate" readonly />
+
+                            }
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span style="font-size:10px;font-weight:500">
+                                DATE FOR MOLD OUT DMM
+                            </span>
+
+                        </div>
+                        <div class="col-md-4" style="text-align:left">
+                            @if (ViewBag.status == "Finished")
+                            {
+                                <span class="spcalendar">
+                                </span>
+                                <input class=" form-control" type="text" autocomplete="off" style="width:80%;text-align:center;font-size:13px" asp-for="ViewRequest.v_ActualEndDate" readonly />
+
+                            }
+                            else
+                            {
+                                <span class="spcalendar">
+                                </span>
+                                <input class="datepicker form-control" type="text" id="txtR_ActualEndDate" autocomplete="off" style="width:80%;text-align:center;font-size:13px" asp-for="ViewRequest.v_ActualEndDate" readonly />
+
+                            }
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="input-group ">
+                                <span class="input-group-text w-30" style="margin-top:0px">
+                                    ระบุสาเหตุ
+                                </span>
+                                @if (ViewBag.status == "Finished")
+                                {
+                                    <textarea class="form-control" rows="3" id="txtR_comment" autocomplete="off" asp-for="ViewRequest.v_Actual_Remark" readonly></textarea>
+                                }
+                                else
+                                {
+                                    <textarea class="form-control" rows="3" id="txtR_comment" autocomplete="off" asp-for="ViewRequest.v_Actual_Remark"></textarea>
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+        </div>
+
+        <div class="modal modal-lg fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
+             style="opacity:1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" id="myModalBodyDiv">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+}
+<script>
+    $('#txtR_ActualStartDate').change(function () {
+        let tPlanST = document.getElementById("txtR_ActualStartDate").value;
+        let tReplan = document.getElementById("txtRplanLeStartDate").value;
+        let StPlanST = tPlanST.substring(0, 7);
+        let StReplan = tReplan.substring(0, 7);
+        console.log("StPlanST===>" + StPlanST);
+        console.log("StReplan===>" + StReplan);
+        if (StPlanST != StReplan) {
+            swal.fire({
+                title: 'แจ้งเตือน',
+                icon: 'warning',
+                text: "กรุณาเลือกวันที่เลือกภายในเดือน",
+
+            })
+                .then((result) => {
+                    document.getElementById('txtR_ActualEndDate').value = "";
+                    document.getElementById('txtR_ActualStartDate').value = "";
+                });
+        }
+
+
+
+    });
+    $('#txtR_ActualEndDate').change(function () {
+        let tPlanST = document.getElementById("m_MasterSt").value;
+        let tReplan = document.getElementById("txtRplanLeStartDate").value;
+        let StPlanST = tPlanST.substring(0, 7);
+        let StReplan = tReplan.substring(0, 7);
+        if (StPlanST != StReplan) {
+
+            swal.fire({
+                title: 'แจ้งเตือน',
+                icon: 'warning',
+                text: "กรุณาเลือกวันที่เลือกภายในเดือน",
+
+            })
+                .then((result) => {
+                    document.getElementById('txtR_ActualEndDate').value = "";
+                    document.getElementById('txtR_ActualStartDate').value = "";
+                });
+
+
+
+        }
+
+    });
+
+
+
+
+    $('#i_chagestart').change(function () {
+
+        let tPlanST = document.getElementById("m_MasterSt").value;
+        let tReplan = document.getElementById("i_chagestart").value;
+        let StPlanST = tPlanST.substring(0, 7);
+        let StReplan = tReplan.substring(0, 7);
+        console.log("StPlanSTtttt" + StPlanST);
+        console.log("StReplannnnnnnn" + StReplan);
+        if (StPlanST != StReplan) {
+
+            swal.fire({
+                title: 'แจ้งเตือน',
+                icon: 'warning',
+                text: "กรุณาเลือกวันที่เลือกภายในเดือน",
+
+            })
+                .then((result) => {
+                    document.getElementById('i_chagestart').value = "";
+                    document.getElementById('i_chageend').value = "";
+                });
+
+
+
+        } else {
+            const i_Day_Cleaning = document.getElementById("i_moldday").value
+            const i_chagestart = document.getElementById("i_chagestart").value
+            document.getElementById("i_chageend").value = "11";
+            // alert('i_chagestart!' + i_chagestart)
+            console.log("tomorrow2" + addDays(i_chagestart, i_Day_Cleaning));
+            document.getElementById("i_chageend").value = addDays(i_chagestart, i_Day_Cleaning);
+        }
+
+
+
+
+
+
+    });
+
+    function addDays(date, days) {
+
+        var tomorrow2 = new Date(date);
+        tomorrow2.setUTCDate(tomorrow2.getUTCDate() + (days-1));
+        console.log("tomorrow2" + tomorrow2.toUTCString("yyyy/MM/dd"));
+
+        var d = new Date(tomorrow2),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('/');
+        //return tomorrow2;
+    }
+
+    $('.datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: 'yyyy/mm/dd'
+
+    });
+    $(function () {
+        $("#user_profile_form").submit(function (event) {
+            event.preventDefault();
+            console.log("Save_data---------");
+        });
+    });
+
+
+
+    $("#btnSave").click(function () {
+        //var filename = $("#fPathFile").serialize();
+        //console.log("Save_data" + filename);
+
+        const formdata = new FormData(document.getElementById("formRequest"));
+        let ddFileName = $('#ddFileName1').prop("files")[0];
+        formdata.append('aiFileName1', ddFileName);
+        //var mydata2 = formdata.serialize();
+        console.log(document.forms.item(0));
+       // console.log("mydata2 + " + mydata2);
+        var nameValue2 = document.getElementById("ddFileName1").value;
+        var i_path = $("#ddFileName1").val();
+        var url2 = '@Url.Action("SaveData", "RequestSheet")?pathfile=' + i_path;
+       //
+        var mydata = $("#formRequest").serialize();
+        console.log("nameValu2e" + nameValue2);
+        console.log("i_path" + i_path);
+             $.ajax({
+             type: "POST",
+             url: url2,//'@Url.Action("SaveData", "RequestSheet", new { pathfile = "i_path" })',
+             // url: '@Url.Action("SaveData", "RequestSheet")',
+             //data: { classs: mydata, pathfile: nameValue2 } ,
+             data: mydata,//formdata,//  // mydata, // mydata,//viewModel,//
+             beforeSend: function () {
+                 swal.fire({
+                     html: '<h5>Loading...</h5>',
+                     showConfirmButton: false,
+                     onRender: function () {
+                         // there will only ever be one sweet alert open.
+                         //$('.swal2-content').prepend(sweet_loader);
+                     }
+                 });
+             },
+                success: async function (config) {
+
+                    if (config.c1 == "S") {
+                        $("#loaderDiv").hide();
+                        //await $("#myModal1").modal("hide");
+                        swal.fire({
+                            title: 'SUCCESS',
+                            icon: 'success',
+                            html: "Save data success  <br> Request no: " + config.c4,
+
+                        })
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById('i_reqNo').value = config.c4;
+                                    document.getElementById('i_status').value = config.c5;
+                                    if (config.c6 !="") {
+                                        document.getElementById('id_file').value = config.c6;
+                                    }
+                                    document.getElementById('i_responby').value = config.c7;
+                                    document.getElementById('i_section').value = config.c8;
+
+
+                                    document.getElementById("btnsavefile").click();
+
+
+                                    @*$.ajax({
+                                        type: "POST",
+                                        url: '@Url.Action("RequestPage", "RequestSheet")',
+                                        data: config.c3, // mydata,
+                                    });*@
+
+                                }
+
+
+                            })
+                    }
+                    else if (config.c1 == "P") {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'warning',
+                            text: config.c2,
+                        })
+                    }
+                    else if (config.c1 == "E") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ERROR',
+                            text: config.c2,
+                        })
+                    }
+                }
+             });
+
+
+    });
+    function btn_CancelManual(action) {
+   // let mydata = $("#formRequest").serialize();
+   //let formData = document.forms.namedItem("formRequest");
+   // //let formData = document.getElementById("formRequest");
+   // let viewModel = new FormData(formData);
+
+   // $.each(formData, function (index, input) {
+   //     viewModel.append(input.name, input.value);
+   // });
+
+    var i_reqNo = document.getElementById('i_reqNo').value;
+
+    Swal.fire({
+        title: "แจ้งเตือน",
+        text: "คุณต้องการยกเลิก Request :  " + i_reqNo + " ใช่หรือไม่ !!!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        width: '40rem', // ปรับขนาดกลางประมาณ 640px
+        customClass: {
+            confirmButton: 'btn-small',
+            cancelButton: 'btn-small'
+        }
+
+    }).then((result) => {
+        if (result['isConfirmed']) {
+            $.ajax({
+                type: 'post',
+                url: action,
+                data: {
+                    DocNo: i_reqNo
+                },
+                success: function (config) {
+                    if (config.c1 == "S") {
+                        swal.fire({
+                            title: 'SUCCESS',
+                            icon: 'success',
+                            text: config.c2,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '@Url.Action("Index", "SearchManual")';
+                            }
+                        });
+                    }
+                    else if (config.c1 == "P") {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'warning',
+                            text: config.c2,
+                        });
+                    }
+                    else if (config.c1 == "E") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ERROR',
+                            text: config.c2,
+                        });
+                    }
+
+
+                }
+            });
+        } else {
+            //console.log('Cancel');
+            return false;
+        }
+    });
+}
+
+</script>
